@@ -21,6 +21,9 @@ public class Player {
     }
 
     public void setEnergia(Double energia) {
+        if(energia < 0){
+            this.energia = 0.0;
+        }
         this.energia = energia;
     }
 
