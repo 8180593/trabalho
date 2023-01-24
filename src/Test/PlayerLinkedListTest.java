@@ -1,26 +1,28 @@
 package Test;
 
 import Player.Equipas;
+import ClassImplementation.LinkedList;
 import Player.Player;
-import Player.PlayerLinkedList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlayerLinkedListTest {
     @Test
-    void addPlayerTest(){
+     void addPlayerTest(){
         Player player = new Player("Rui", Equipas.Sparks);
-        PlayerLinkedList playerLinkedList = new PlayerLinkedList();
-        playerLinkedList.addPlayer(player);
-        assertEquals(playerLinkedList.getNext().getPlayer().getName(), "Rui");
+        LinkedList<Player> playerLinkedList = new LinkedList<Player>();
+        playerLinkedList.add(player);
+        assertEquals( "Rui", playerLinkedList.get(0).getName());
     }
     @Test
     void addPlayerTest1(){
         Player player = new Player("Rui", Equipas.Sparks);
-        PlayerLinkedList playerLinkedList = new PlayerLinkedList();
-        playerLinkedList.removePlayer(player);
-        assertNull(playerLinkedList.getNext().getPlayer().getName());
+        Player player1 = new Player("Rafa", Equipas.Sparks);
+        LinkedList<Player> playerLinkedList = new LinkedList();
+        playerLinkedList.add(player);
+        playerLinkedList.add(player1);
+        playerLinkedList.remove(0);
+        assertEquals("Rafa",playerLinkedList.get(0).getName());
     }
 }
