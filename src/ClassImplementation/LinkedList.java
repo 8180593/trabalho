@@ -1,5 +1,8 @@
 package ClassImplementation;
-
+/**
+ * @author 8210311 Daniele Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class LinkedList<T> {
     private Node<T> head;
     private Node<T> tail;

@@ -1,5 +1,8 @@
 package ClassImplementation;
-
+/**
+ * @author 8210311 Daniele Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class Node<T>{
     private Node<T> next;
     private T element;

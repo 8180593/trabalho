@@ -1,8 +1,14 @@
 package Player;
 
+import ClassImplementation.LinkedList;
+
+/**
+ * @author 8210311 Daniele Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class Equipa {
     private Equipas equipa;
-    private PlayerLinkedList jogadores;
+    private LinkedList<Player> jogadores;
 
     public Equipas getEquipa() {
         return equipa;
@@ -12,11 +18,11 @@ public class Equipa {
         this.equipa = equipa;
     }
 
-    public PlayerLinkedList getJogadores() {
+    public LinkedList<Player> getJogadores() {
         return jogadores;
     }
 
-    public void setJogadores(PlayerLinkedList jogadores) {
+    public void setJogadores(LinkedList<Player> jogadores) {
         this.jogadores = jogadores;
     }
 }
