@@ -32,7 +32,17 @@ public class Map implements MapInterface{
      * @param portal
      */
     @Override
-    public void editPortal(Portal portal){
+    public void editPortal(Portal portal, double latitude, double longitude){
+
+    }
+
+    @Override
+    public void editPortal(Portal portal, double energia){
+
+    }
+
+    @Override
+    public void editPortal(Portal portal, Equipa estado){
 
     }
 
