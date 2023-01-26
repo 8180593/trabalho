@@ -46,23 +46,39 @@ public class GUI implements ActionListener {
         if(e.getSource() == button)
             addPlayer();;
     }
-    public void addPlayer(){
-        if(!Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty())
+    public boolean addPlayer(){
+        if(!Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty()){
             players.add(new Player(fieldName.getText(), Equipas.Sparks));
-        else if(Sparks.getState() && !Giants.getState() && !fieldName.getText().isEmpty())
+            return true;
+        }
+        else if(Sparks.getState() && !Giants.getState() && !fieldName.getText().isEmpty()){
             players.add(new Player(fieldName.getText(), Equipas.Giants));
-        else if(Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty())
+            return true;
+        }
+        else if(Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "So pode selecionar uma equipa");
-        else if(Sparks.getState() && Giants.getState() && fieldName.getText().isEmpty())
+            return false;
+        }
+        else if(Sparks.getState() && Giants.getState() && fieldName.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Digite o nome do jogador e Selecione apenas uma equipa");
-        else if(!Sparks.getState() && !Giants.getState() && !fieldName.getText().isEmpty())
+            return false;
+        }
+        else if(!Sparks.getState() && !Giants.getState() && !fieldName.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Selecione uma equipa");
-        else if(Sparks.getState() && !Giants.getState() && fieldName.getText().isEmpty())
+            return false;
+        }
+        else if(Sparks.getState() && !Giants.getState() && fieldName.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Digite o nome do Jogador");
-        else if(!Sparks.getState() && Giants.getState() && fieldName.getText().isEmpty())
+            return false;
+        }
+        else if(!Sparks.getState() && Giants.getState() && fieldName.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Digite o nome do Jogador");
-        else
+            return false;
+        }
+        else{
             JOptionPane.showMessageDialog(null, "Digite o nome do jogador e Selecione uma Equipa");
+            return false;
+        }
     }
     public static void main(String[] args) {
         new GUI();
