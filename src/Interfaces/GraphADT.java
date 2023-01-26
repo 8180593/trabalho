@@ -2,6 +2,10 @@ package Interfaces;
 
 import java.util.Iterator;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public interface GraphADT <T>{
     public void addVertex(T vertex);
     public void removeVertex(T vertex);

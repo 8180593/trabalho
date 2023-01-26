@@ -1,7 +1,12 @@
 package ClassImplementation;
+
 import Interfaces.StackADT;
 import Exceptions.*;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class LinkedStack<T> implements StackADT<T>{
     private int count;
     private Node<T> top;

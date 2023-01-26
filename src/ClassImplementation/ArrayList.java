@@ -6,6 +6,10 @@ import Interfaces.ListADT;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class ArrayList<T> implements ListADT<T>, Iterable<T> {
     private final int DEFAULT_CAPACITY = 100;
     private final int ExpandBy = 2;

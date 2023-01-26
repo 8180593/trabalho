@@ -2,6 +2,10 @@ package Interfaces;
 
 import java.util.Iterator;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public interface ListADT<T> extends Iterable<T> {
     /**
      * Removes and returns the first element from this list.

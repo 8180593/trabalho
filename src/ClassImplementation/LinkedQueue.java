@@ -3,6 +3,10 @@ package ClassImplementation;
 import Exceptions.EmptyCollectionException;
 import Interfaces.QueueADT;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class LinkedQueue<T> implements QueueADT<T> {
 
     private int count = 0;

@@ -2,6 +2,10 @@ package Interfaces;
 
 import Exceptions.EmptyCollectionException;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public interface QueueADT<T> {
     /**
      * Adds one element to the rear of this queue.

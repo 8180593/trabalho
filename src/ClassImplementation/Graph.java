@@ -4,6 +4,10 @@ import Interfaces.GraphADT;
 
 import java.util.Iterator;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class Graph<T> implements GraphADT<T> {
     protected final int DEFAULT_CAPACITY = 10;
     protected int numVertices; // number of vertices in the graph

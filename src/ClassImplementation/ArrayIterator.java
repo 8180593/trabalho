@@ -3,6 +3,10 @@ package ClassImplementation;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class ArrayIterator<T> implements Iterator {
     private int count;
     private int current;

@@ -2,6 +2,10 @@ package Interfaces;
 
 import Exceptions.EmptyCollectionException;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public interface StackADT<T> {
     /** Adds one element to the top of this stack.
      * @param element element to be pushed onto stack*/

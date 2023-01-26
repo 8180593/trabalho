@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Daniela Moreira 8210311
+ * @author Orlando Pires 8210367
+ */
 public class GUI implements ActionListener {
     private LinkedList<Player> players = new LinkedList<>();
     private JFrame frame = new JFrame("JFrame Example");
