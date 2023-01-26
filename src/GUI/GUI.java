@@ -1,8 +1,10 @@
 package GUI;
 
 import ClassImplementation.LinkedList;
-import Player.Player;
+import ClassImplementation.Node;
 import Player.Equipas;
+import Player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -44,16 +46,25 @@ public class GUI implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == button)
-            addPlayer();;
+            if(addPlayer())
+                JOptionPane.showMessageDialog(null, "Jogador adicionado com sucesso");
     }
     public boolean addPlayer(){
         if(!Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty()){
-            players.add(new Player(fieldName.getText(), Equipas.Sparks));
-            return true;
+            Player jogador = new Player(fieldName.getText(), Equipas.Giants);
+            if(!verificaJogador(jogador)){
+                players.add(jogador);
+                return true;
+            }
+            return false;
         }
         else if(Sparks.getState() && !Giants.getState() && !fieldName.getText().isEmpty()){
-            players.add(new Player(fieldName.getText(), Equipas.Giants));
-            return true;
+            Player jogador = new Player(fieldName.getText(), Equipas.Giants);
+            if(!verificaJogador(jogador)){
+                players.add(jogador);
+                return true;
+            }
+            return false;
         }
         else if(Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "So pode selecionar uma equipa");
@@ -82,5 +93,17 @@ public class GUI implements ActionListener {
     }
     public static void main(String[] args) {
         new GUI();
+    }
+    public boolean verificaJogador(Player player){
+        Node<Player> current = players.getFront();
+        int i = 0;
+        do{
+            if(current.getElement().equals(player)){
+                JOptionPane.showMessageDialog(null, "Jogador ja existe");
+                return true;
+            }
+            current = current.getNext();
+        }while(current != null);
+        return false;
     }
 }
