@@ -32,7 +32,7 @@ public class Map implements MapInterface{
      * @param portal
      */
     @Override
-    public void editPortal(Portal portal) {
+    public void editPortal(Portal portal){
 
     }
 

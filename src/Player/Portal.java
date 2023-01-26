@@ -9,7 +9,6 @@ public class Portal {
     private double longitude;
     private double energia;
     private Equipa estado;
-
     public Portal(String id, double latitude, double longitude, double energia, Equipa estado) {
         this.id = id;
         this.latitude = latitude;
