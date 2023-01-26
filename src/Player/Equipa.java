@@ -3,7 +3,7 @@ package Player;
 import ClassImplementation.LinkedList;
 
 /**
- * @author 8210311 Daniele Moreira
+ * @author 8210311 Daniela Moreira
  * @author 8210367 Orlando Pires
  */
 public class Equipa {
