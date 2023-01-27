@@ -10,10 +10,10 @@ public class Connector {
     private double Longitude;
     private double latitude;
     private double energia;
-    private double intervaloTempo;
+    private long intervaloTempo;
     private LinkedList<ConnectorHistorico> players;
 
-    public Connector(String id, double longitude, double latitude, double energia, double intervaloEnergia) {
+    public Connector(String id, double longitude, double latitude, double energia, long intervaloTempo) {
         this.id = id;
         Longitude = longitude;
         this.latitude = latitude;
@@ -61,7 +61,7 @@ public class Connector {
         return intervaloTempo;
     }
 
-    public void setIntervaloTempo(double intervaloTempo) {
+    public void setIntervaloTempo(long intervaloTempo) {
         this.intervaloTempo = intervaloTempo;
     }
 

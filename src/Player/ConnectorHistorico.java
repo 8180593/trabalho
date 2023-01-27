@@ -4,10 +4,11 @@ package Player;
  * @author 8210367 Orlando Pires
  */
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class ConnectorHistorico {
     private Player player;
-    private LocalDate data = LocalDate.now();
+    private LocalTime data = LocalTime.now();
 
     public ConnectorHistorico(Player player) {
         this.player = player;
@@ -21,7 +22,7 @@ public class ConnectorHistorico {
         this.player = player;
     }
 
-    public LocalDate getData() {
+    public LocalTime getData() {
         return data;
     }
 }

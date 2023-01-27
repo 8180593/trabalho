@@ -1,4 +1,7 @@
 package Player;
+
+import java.util.Stack;
+import java.util.UUID;
 /**
  * @author 8210311 Daniela Moreira
  * @author 8210367 Orlando Pires
@@ -8,10 +11,9 @@ public class Portal {
     private double latitude;
     private double longitude;
     private double energiaAtual;
-    private Equipa estado;
+    private Equipas estado;
     private double energiaTotal;
-    //preferes que os portais tenham todos uma energia total diferente? Se nao, fazemos uma constante.
-    private double umQuartoEnergiaTotal;
+    private Stack<Registos> registos;
 
     public Portal(String id, double latitude, double longitude, double energiaAtual, Equipa estado) {
         this.id = id;
@@ -20,8 +22,20 @@ public class Portal {
         this.energiaAtual = energiaAtual;
     }
 
+    public Stack<Registos> getRegistos() {
+        return registos;
+    }
+
+    public double getEnergiaTotal() {
+        return energiaTotal;
+    }
+
+    public void setEnergiaTotal(double energiaTotal) {
+        this.energiaTotal = energiaTotal;
+    }
+
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -29,7 +43,7 @@ public class Portal {
     }
 
     public double getLatitude() {
-        return latitude;
+        return this.latitude;
     }
 
     public void setLatitude(double latitude) {
@@ -37,7 +51,7 @@ public class Portal {
     }
 
     public double getLongitude() {
-        return longitude;
+        return this.longitude;
     }
 
     public void setLongitude(double longitude) {
@@ -45,29 +59,18 @@ public class Portal {
     }
 
     public double getEnergiaAtual() {
-        return energiaAtual;
+        return this.energiaAtual;
     }
 
-    public void setEnergia(double energia) {
+    public void setEnergiaAtual(double energia) {
         this.energiaAtual = energia;
     }
 
-    public Equipa getEstado() {
-        return estado;
+    public Equipas getEstado() {
+        return this.estado;
     }
 
-    public void setEstado(Equipa estado) {
+    public void setEstado(Equipas estado) {
         this.estado = estado;
-    }
-
-    public void determinarEstadoAtacado(Portal portal, float energiaRetirada){
-        //retira a energiaRetirada da sua energiaAtual
-        //se for menor que 0, faz o abs()
-            //
-
-    }
-
-    public void determinarEstadoFortelacido(Portal portal, float energiaDoada){
-
     }
 }
