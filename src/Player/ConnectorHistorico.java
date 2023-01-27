@@ -12,8 +12,9 @@ public class ConnectorHistorico {
     private Player player;
     private LocalTime data = LocalTime.now();
 
-    public ConnectorHistorico(Player player) {
+    public ConnectorHistorico(Player player, LocalTime data) {
         this.player = player;
+        this.data = data;
     }
 
     public Player getPlayer() {
@@ -26,5 +27,9 @@ public class ConnectorHistorico {
 
     public LocalTime getData() {
         return data;
+    }
+
+    public void setData(LocalTime data) {
+        this.data = data;
     }
 }

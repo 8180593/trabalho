@@ -31,9 +31,9 @@ public class PortalGestao {
         if(energiaRetirada >= portal.getEnergiaAtual() && energiaRetirada < portal.getEnergiaAtual()*1.25){
             portal.setEstado(null);
             jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
-
+            portal.setEstado(null);
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
-            portal.getRegistos().add(registo);
+            portal.getRegistos().push(registo);
 
         }else if(energiaRetirada >= portal.getEnergiaAtual() * 1.25){
             double energiaSobra = energiaRetirada - portal.getEnergiaAtual();
@@ -41,11 +41,12 @@ public class PortalGestao {
             determinarEstadoConquistado(portal, energiaSobra, jogador);
             jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
 
+            portal.setEstado(jogador.getEquipa());
             Registos registo = new Registos(jogador, Acao.CONQUISTOU, energiaRetirada);
         }else{
             portal.setEnergiaAtual(portal.getEnergiaAtual()-jogador.getEnergia());
             Registos registo = new Registos(jogador, Acao.ATACOU, energiaRetirada);
-            portal.getRegistos().add(registo);
+            portal.getRegistos().push(registo);
 
             jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
         }
@@ -67,7 +68,7 @@ public class PortalGestao {
         portal.setEnergiaAtual(portal.getEnergiaAtual() + energiaDoada);
 
         Registos registo = new Registos(jogador, Acao.FORTALECEU, energiaDoada);
-        portal.getRegistos().add(registo);
+        portal.getRegistos().push(registo);
     }
 
     /**
@@ -79,6 +80,6 @@ public class PortalGestao {
     public void determinarEstadoConquistado(Portal portal, double energiaSobra, Player jogador){
         portal.setEnergiaAtual(energiaSobra);
         Registos registo = new Registos(jogador, Acao.CONQUISTOU, energiaSobra);
-        portal.getRegistos().add(registo);
+        portal.getRegistos().push(registo);
     }
 }

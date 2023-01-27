@@ -1,7 +1,8 @@
 package Player;
 
-import java.util.Stack;
+import ClassImplementation.LinkedStack;
 import java.util.UUID;
+
 /**
  * @author 8210311 Daniela Moreira
  * @author 8210367 Orlando Pires
@@ -13,7 +14,7 @@ public class Portal {
     private double energiaAtual;
     private Equipas estado;
     private double energiaTotal;
-    private Stack<Registos> registos;
+    private LinkedStack<Registos> registos;
 
     /**
      *
@@ -23,14 +24,16 @@ public class Portal {
      * @param energiaAtual
      * @param estado
      */
-    public Portal(String id, double latitude, double longitude, double energiaAtual, Equipa estado) {
+    public Portal(String id, double latitude, double longitude, double energiaAtual, Equipas estado) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.energiaAtual = energiaAtual;
+        this.estado = estado;
+        this.registos = new LinkedStack<Registos>();
     }
 
-    public Stack<Registos> getRegistos() {
+    public LinkedStack<Registos> getRegistos() {
         return registos;
     }
 

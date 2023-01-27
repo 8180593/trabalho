@@ -31,7 +31,6 @@ public class AcaoPlayer {
     }
 
     /**
-     * Falta testar
      * Verifica se existe jogadores na lista de jogadores do connector
      * Caso exsitam verifica se o jogador já existe na lista
      * Se existir verifica se já passou o tempo de intervalo
@@ -55,7 +54,7 @@ public class AcaoPlayer {
             } while (current != null);
 
             if(i == connector.getPlayers().size()){
-                ConnectorHistorico historico = new ConnectorHistorico(jogador);
+                ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
                 connector.getPlayers().add(historico);
 
                 if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {
@@ -63,7 +62,7 @@ public class AcaoPlayer {
                 }
             }
         }else{
-            ConnectorHistorico historico = new ConnectorHistorico(jogador);
+            ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
             connector.getPlayers().add(historico);
 
             if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {

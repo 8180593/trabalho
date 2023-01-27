@@ -6,6 +6,8 @@ import Player.Equipas;
 import Player.Player;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * @author 8210311 Daniele Moreira
@@ -16,7 +18,7 @@ public class ConnectorTeste {
     void connectorTeste() {
         Connector connector = new Connector("1", 1, 1, 1, 1);
         Player jogador = new Player("João", Equipas.Sparks);
-        ConnectorHistorico historico = new ConnectorHistorico(jogador);
+        ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
         connector.setPlayers(historico);
         assertEquals(connector.getPlayers().get(0).getPlayer(), jogador);
     }
