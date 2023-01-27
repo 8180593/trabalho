@@ -14,8 +14,8 @@ public class Player {
     //private Portal portalAtual;
     //private Connector connectorAtual;
 
-    public Player(String name, Equipas equipa, double energia) {
-        this.energia = energia;
+    public Player(String name, Equipas equipa) {
+        this.energia = 0.0;
         this.name = name;
         this.nivel = 0.0;
         this.equipa = equipa;

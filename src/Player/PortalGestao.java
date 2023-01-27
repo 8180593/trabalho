@@ -26,7 +26,7 @@ public class PortalGestao {
             portal.setEstado(null);
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
 
-            return energiaRetirarJogador = portal.getEnergiaAtual());
+            return energiaRetirarJogador = portal.getEnergiaAtual();
 
         }else if(maisUmQuarto(portal, energiaRetirada) > 0){
             determinarEstadoConquistado(portal, maisUmQuarto(portal, energiaRetirada), jogador);
