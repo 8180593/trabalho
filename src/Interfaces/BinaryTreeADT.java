@@ -2,6 +2,10 @@ package Interfaces;
 
 import java.util.Iterator;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public interface BinaryTreeADT<T> {
     /**
      * Returns a reference to the root element

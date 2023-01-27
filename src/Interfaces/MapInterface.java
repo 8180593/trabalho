@@ -4,6 +4,10 @@ import Player.Connector;
 import Player.Equipa;
 import Player.Portal;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public interface MapInterface {
     public void addProtal(Portal portal);
     public void removePortal(Portal portal);

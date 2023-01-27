@@ -7,6 +7,10 @@ package Interfaces;
 
 import Exceptions.EmptyCollectionException;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public interface HeapADT<T> extends BinaryTreeADT<T> {
    /** 
     * Adds the specified object to this heap. 

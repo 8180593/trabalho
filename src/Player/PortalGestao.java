@@ -1,56 +1,81 @@
 package Player;
 
+import Exceptions.InvalidEnergy;
+
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class PortalGestao {
     /**
-     * Metodo Mais de Um Quarto
+     * Metodo Determinar Estado Atacado
      *
-     * Calcula se o jogador possui energia suficiente para conquistar
-     * @param portal
-     * @return
+     * Quando um jogador decide atacar o portal de outra equipa, três resultados possíveis
+     * podem ocorrer.
+     * 1 - A energia retirada é superior ou igual ao número de energia existente
+     * no portal, mas é inferior ao valor necessário para conquistar um portal.
+     * Se esta situação se se verificar, o portal ficará neutro.
+     * 2 - A quantidade de energia retirada é suficiente para conquistar um portal.
+     * O estado do portal irá ser alterado para o mesmo da equipa do jogador.
+     * 3 - A quantidade de energia retirada é inferior à energia existente no portal.
+     * Ser-se-ão retirados esses pontos mas o portal continuará a pertencer à equipa oposta.
+     *
+     * @param portal portal a ser atacado
+     * @param energiaRetirada quantidade de energia do jogador escolhida
+     * @param jogador jogador a realizar o ataque
      */
-    public double maisUmQuarto(Portal portal, double energiaRetirada){
-        double energiaRestante = portal.getEnergiaAtual() - energiaRetirada;
-        Math.abs(energiaRestante);
-
-        if(energiaRestante >= (portal.getEnergiaTotal() * 0.25)){
-            return energiaRestante;
-        }
-        return 0;
-    }
-
-    public double determinarEstadoAtacado(Portal portal, double energiaRetirada, Player jogador) {
+    public void destruirPortal(Portal portal, double energiaRetirada, Player jogador) {
         double energiaRetirarJogador = 0;
         //o numero de energia realmente gasta pelo jogador
 
-        if(energiaRetirada == portal.getEnergiaAtual() || maisUmQuarto(portal, energiaRetirada) == 0){
+        if(energiaRetirada >= portal.getEnergiaAtual() && energiaRetirada < portal.getEnergiaAtual()*1.25){
             portal.setEstado(null);
+            jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
+
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
+            portal.getRegistos().add(registo);
 
-            return energiaRetirarJogador = portal.getEnergiaAtual();
+        }else if(energiaRetirada >= portal.getEnergiaAtual() * 1.25){
+            double energiaSobra = energiaRetirada - portal.getEnergiaAtual();
 
-        }else if(maisUmQuarto(portal, energiaRetirada) > 0){
-            determinarEstadoConquistado(portal, maisUmQuarto(portal, energiaRetirada), jogador);
-            //envia o que sobra da energiaRetirada;
+            determinarEstadoConquistado(portal, energiaSobra, jogador);
             jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
 
-            return energiaRetirarJogador = energiaRetirada;
-
+            Registos registo = new Registos(jogador, Acao.CONQUISTOU, energiaRetirada);
         }else{
             portal.setEnergiaAtual(portal.getEnergiaAtual()-jogador.getEnergia());
             Registos registo = new Registos(jogador, Acao.ATACOU, energiaRetirada);
+            portal.getRegistos().add(registo);
 
-            return energiaRetirarJogador = energiaRetirada;
+            jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
         }
     }
 
-    public void determinarEstadoFortelacido(Portal portal, double energiaDoada, Player jogador){
+    /**
+     * Se a energia doada for superior à energia do jogador, o jogador não consegue
+     * Aumentar a energia do portal.
+     * Criar um registo de fortalecimento do portal.
+     * @param portal
+     * @param energiaDoada
+     * @param jogador
+     */
+    public void fortalecerPortal(Portal portal, double energiaDoada, Player jogador) throws InvalidEnergy {
         //se tivermos limites de torre, temos que retomar o valor que sobra.
+        if(energiaDoada > jogador.getEnergia()) {
+            throw new InvalidEnergy("Não tem energia suficiente para fortalecer o portal");
+        }
         portal.setEnergiaAtual(portal.getEnergiaAtual() + energiaDoada);
 
         Registos registo = new Registos(jogador, Acao.FORTALECEU, energiaDoada);
         portal.getRegistos().add(registo);
     }
 
+    /**
+     *
+     * @param portal
+     * @param energiaSobra
+     * @param jogador
+     */
     public void determinarEstadoConquistado(Portal portal, double energiaSobra, Player jogador){
         portal.setEnergiaAtual(energiaSobra);
         Registos registo = new Registos(jogador, Acao.CONQUISTOU, energiaSobra);

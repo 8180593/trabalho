@@ -15,6 +15,14 @@ public class Portal {
     private double energiaTotal;
     private Stack<Registos> registos;
 
+    /**
+     *
+     * @param id
+     * @param latitude
+     * @param longitude
+     * @param energiaAtual
+     * @param estado
+     */
     public Portal(String id, double latitude, double longitude, double energiaAtual, Equipa estado) {
         this.id = id;
         this.latitude = latitude;
