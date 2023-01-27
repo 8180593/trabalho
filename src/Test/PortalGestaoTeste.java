@@ -20,16 +20,40 @@ public class PortalGestaoTeste {
     AcaoPlayer acaoJogador = new AcaoPlayer();
 
     /**
-     * Teste de verificação de conquista do portal
-     * Teste falhado não muda a equipa do portal
+     * Teste de verificação da neutralização de um portal
      */
     @Test
-    void destruirPortaltest(){
+    void destruirPortaltestEstadoNull(){
         Portal portal = new Portal("0", 1,1,10, Equipas.Giants);
         Player jogador = new Player("Duarte", Equipas.Sparks);
         acaoJogador.carregarEnergia(connector, jogador);
-        portalGestao.destruirPortal(portal, 0, jogador);
-        //assertEquals(50, jogador.getEnergia()); O jogador fica com 50 de energia
+        portalGestao.destruirPortal(portal, 10, jogador);
+        assertEquals(null, portal.getEstado());
+    }
+
+    /**
+     * Teste de verificação da conquista de um portal
+     */
+    @Test
+    void destruirPortaltestEstadoSparks(){
+        Portal portal = new Portal("0", 1,1,10, Equipas.Giants);
+        Player jogador = new Player("Duarte", Equipas.Sparks);
+        acaoJogador.carregarEnergia(connector, jogador);
+        portalGestao.destruirPortal(portal, 12.5, jogador);
         assertEquals(Equipas.Sparks, portal.getEstado());
+    }
+
+    /**
+     * Teste de enfraqueciemento de um portal
+     * Atenção quando não existe energia suficiente para neutralizar o portal o jogador está a gastar toda a sua enrgia
+     */
+    @Test
+    void destruirPortaltestEnfraquecer(){
+        Portal portal = new Portal("0", 1,1,10, Equipas.Giants);
+        Player jogador = new Player("Duarte", Equipas.Sparks);
+        Connector connectorFraco = new Connector("1", 1,1,4, 0);
+        acaoJogador.carregarEnergia(connectorFraco, jogador);
+        portalGestao.destruirPortal(portal, 2, jogador);
+        assertEquals(6, portal.getEnergiaAtual());
     }
 }
