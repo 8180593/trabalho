@@ -7,13 +7,17 @@ public class Portal {
     private String id;
     private double latitude;
     private double longitude;
-    private double energia;
+    private double energiaAtual;
     private Equipa estado;
-    public Portal(String id, double latitude, double longitude, double energia, Equipa estado) {
+    private double energiaTotal;
+    //preferes que os portais tenham todos uma energia total diferente? Se nao, fazemos uma constante.
+    private double umQuartoEnergiaTotal;
+
+    public Portal(String id, double latitude, double longitude, double energiaAtual, Equipa estado) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.energia = energia;
+        this.energiaAtual = energiaAtual;
     }
 
     public String getId() {
@@ -40,12 +44,12 @@ public class Portal {
         this.longitude = longitude;
     }
 
-    public double getEnergia() {
-        return energia;
+    public double getEnergiaAtual() {
+        return energiaAtual;
     }
 
     public void setEnergia(double energia) {
-        this.energia = energia;
+        this.energiaAtual = energia;
     }
 
     public Equipa getEstado() {
@@ -54,5 +58,16 @@ public class Portal {
 
     public void setEstado(Equipa estado) {
         this.estado = estado;
+    }
+
+    public void determinarEstadoAtacado(Portal portal, float energiaRetirada){
+        //retira a energiaRetirada da sua energiaAtual
+        //se for menor que 0, faz o abs()
+            //
+
+    }
+
+    public void determinarEstadoFortelacido(Portal portal, float energiaDoada){
+
     }
 }
