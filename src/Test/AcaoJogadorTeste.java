@@ -4,6 +4,7 @@ import Player.AcaoPlayer;
 import Player.Connector;
 import Player.Player;
 import Player.Equipas;
+import Player.Map;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +17,7 @@ public class AcaoJogadorTeste {
     AcaoPlayer acaoPlayer = new AcaoPlayer();
     Connector connector = new Connector("1", 1,1,50, 0,1);
     Player jogador = new Player("Daniela", Equipas.Giants);
+    Map mapa = new Map();
 
     /**
      * Teste de carregamento de energia de um jogador
@@ -31,4 +33,8 @@ public class AcaoJogadorTeste {
 
     }*/
 
+    @Test
+    void proximaLocalizacaoTest(){
+        acaoPlayer.proximaLocalizacao(mapa, jogador);
+    }
 }

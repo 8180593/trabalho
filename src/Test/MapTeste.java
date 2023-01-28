@@ -1,9 +1,7 @@
 package Test;
 
 import Exceptions.InvalidValue;
-import Player.Player;
 import Player.Equipas;
-import Player.Connector;
 import Player.AcaoPlayer;
 import Player.Map;
 import Player.Portal;
@@ -12,6 +10,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class MapTeste {
     AcaoPlayer acaoJogador = new AcaoPlayer();
     Map mapa = new Map();
