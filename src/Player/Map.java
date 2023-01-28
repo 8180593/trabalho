@@ -1,6 +1,7 @@
 package Player;
 
 import ClassImplementation.LinkedList;
+import ClassImplementation.LinkedQueue;
 import ClassImplementation.Network;
 import ClassImplementation.Node;
 import Exceptions.InvalidValue;
@@ -27,26 +28,27 @@ public class Map extends Network<String> implements MapInterface{
 
      /**
      * Temos que deixar o registo mais recente de cada jogador
+      * Falta testar
      * @param connector
      */
     @Override
     public void removerRegistosConnector(Connector connector) {
-        LinkedList<ConnectorHistorico> UltimoRegisto= new LinkedList<>();
+        LinkedQueue<ConnectorHistorico> UltimoRegisto= new LinkedQueue<>();
         Node current = connector.getPlayers().getFront();
 
         for(int i = 0; i < connector.getPlayers().size(); i++){
             ConnectorHistorico registo = (ConnectorHistorico) current.getElement();
             if(UltimoRegisto.isEmpty()){
-                UltimoRegisto.add(registo);
+                UltimoRegisto.enqueue(registo);
             }
             else{
-                ConnectorHistorico ultimo = UltimoRegisto.getLast();
-                if(registo.getJogador().getNome().equals(ultimo.getJogador().getNome())){
-                    UltimoRegisto.removeLast();
-                    UltimoRegisto.addLast(registo);
+                ConnectorHistorico ultimo = UltimoRegisto.getRear().getElement();
+                if(registo.getPlayer().getName().equals(ultimo.getPlayer().getName())){
+                    UltimoRegisto.dequeue();
+                    UltimoRegisto.enqueue(registo);
                 }
                 else{
-                    UltimoRegisto.addLast(registo);
+                    UltimoRegisto.enqueue(registo);
                 }
             }
             current = current.getNext();

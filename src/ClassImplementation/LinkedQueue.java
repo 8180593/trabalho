@@ -77,4 +77,7 @@ public class LinkedQueue<T> implements QueueADT<T> {
     public Node<T> getFront() {
         return front;
     }
+    public Node<T> getRear() {
+        return rear;
+    }
 }
