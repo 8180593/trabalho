@@ -8,7 +8,7 @@ public class Player {
     private String name;
     private Double nivel;
     private Equipas equipa;
-    //private String localAtual;
+    private String idLocalAtual;
     //^ desta forma so basta uma variavel, mas perderemos tempo em pesquisa
     //alternativamente:
     //private Portal portalAtual;
@@ -19,6 +19,14 @@ public class Player {
         this.name = name;
         this.nivel = 0.0;
         this.equipa = equipa;
+    }
+
+    public String getIdLocalAtual() {
+        return idLocalAtual;
+    }
+
+    public void setIdLocalAtual(String idLocalAtual) {
+        this.idLocalAtual = idLocalAtual;
     }
 
     public Double getEnergia() {

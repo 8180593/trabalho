@@ -1,7 +1,7 @@
 package Player;
 
+import ClassImplementation.Network;
 import ClassImplementation.Node;
-import Exceptions.InvalidEnergy;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -11,17 +11,16 @@ import java.time.LocalTime;
  * @author 8210367 Orlando Pires
  */
 public class AcaoPlayer {
-    //O que é que os jogadores podem fazer?
-
-    //Podem andar - uma funçao void que da set
-    //Podem carregar a sua energia nos connectors
-    //Podem dar energia ao seu portal
-    //Podem tirar energia ao portal da outra equipa
 
     /**
      *
      */
-    public void andar(){
+    public void andar(Map map, Player jogador){
+        Network network = new Network();
+        map.getAdjMatrix();
+
+        //map.iteratorShortestPath(jogador.getIdLocalAtual(),);
+
         //verifica que portals/connectors tem ligação com o local atual do jogador
         //^ Este metodo se calhar ficaria bem no Map
 
@@ -45,7 +44,7 @@ public class AcaoPlayer {
         if(current != null) {
             do {
                 if (current.getElement().getPlayer() == jogador) {
-                    if (Duration.between(LocalTime.now(), connector.getPlayers().getFront().getElement().getData()).toMinutes() >= connector.getIntervaloTempo()) {
+                    if (Duration.between(LocalTime.now(), connector.getPlayers().first().getData()).toMinutes() >= connector.getIntervaloTempo()) {
                         jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());
                     }
                 }
@@ -55,7 +54,7 @@ public class AcaoPlayer {
 
             if(i == connector.getPlayers().size()){
                 ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
-                connector.getPlayers().add(historico);
+                connector.getPlayers().enqueue(historico);
 
                 if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {
                     jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());
@@ -63,7 +62,7 @@ public class AcaoPlayer {
             }
         }else{
             ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
-            connector.getPlayers().add(historico);
+            connector.getPlayers().enqueue(historico);
 
             if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {
                 jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());

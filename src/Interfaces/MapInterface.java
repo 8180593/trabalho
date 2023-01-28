@@ -1,7 +1,8 @@
 package Interfaces;
 
+import Exceptions.InvalidValue;
 import Player.Connector;
-import Player.Equipa;
+import Player.Equipas;
 import Player.Portal;
 
 /**
@@ -11,8 +12,8 @@ import Player.Portal;
 public interface MapInterface {
     public void addProtal(Portal portal);
     public void removePortal(Portal portal);
-    public void editPortal(Portal portal, double energia);
-    public void editPortal(Portal portal, double latitude, double longitude);
+    public void editPortal(Portal portal, double energia) throws InvalidValue;
+    public void editPortal(Portal portal, double latitude, double longitude) throws InvalidValue;
     public void removerRegistosConnector(Connector connector);
-    public void editPortal(Portal portal, Equipa estado);
+    public void editPortal(Portal portal, Equipas estado);
 }

@@ -1,6 +1,6 @@
 package Player;
 
-import Exceptions.InvalidEnergy;
+import Exceptions.InvalidValue;
 
 /**
  * @author 8210311 Daniela Moreira
@@ -25,9 +25,6 @@ public class PortalGestao {
      * @param jogador jogador a realizar o ataque
      */
     public void destruirPortal(Portal portal, double energiaRetirada, Player jogador) {
-        double energiaRetirarJogador = 0;
-        //o numero de energia realmente gasta pelo jogador
-
         if(energiaRetirada >= portal.getEnergiaAtual() && energiaRetirada < portal.getEnergiaAtual()*1.25){
             portal.setEstado(null);
             jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
@@ -43,8 +40,10 @@ public class PortalGestao {
 
             portal.setEstado(jogador.getEquipa());
             Registos registo = new Registos(jogador, Acao.CONQUISTOU, energiaRetirada);
+            portal.getRegistos().push(registo);
+
         }else{
-            portal.setEnergiaAtual(portal.getEnergiaAtual()-jogador.getEnergia());
+            portal.setEnergiaAtual(portal.getEnergiaAtual()-energiaRetirada);
             Registos registo = new Registos(jogador, Acao.ATACOU, energiaRetirada);
             portal.getRegistos().push(registo);
 
@@ -60,10 +59,9 @@ public class PortalGestao {
      * @param energiaDoada
      * @param jogador
      */
-    public void fortalecerPortal(Portal portal, double energiaDoada, Player jogador) throws InvalidEnergy {
-        //se tivermos limites de torre, temos que retomar o valor que sobra.
+    public void fortalecerPortal(Portal portal, double energiaDoada, Player jogador) throws InvalidValue {
         if(energiaDoada > jogador.getEnergia()) {
-            throw new InvalidEnergy("Não tem energia suficiente para fortalecer o portal");
+            throw new InvalidValue("Não tem energia suficiente para fortalecer o portal");
         }
         portal.setEnergiaAtual(portal.getEnergiaAtual() + energiaDoada);
 

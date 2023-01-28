@@ -7,6 +7,10 @@ import java.util.Iterator;
 public class Network<T> extends Graph<T> implements NetworkADT<T> {
     private double[][] adjMatrix;
 
+    public double[][] getAdjMatrix(){
+        return this.adjMatrix;
+    }
+
     public Network() {
         numVertices = 0;
         this.adjMatrix = new double[DEFAULT_CAPACITY][DEFAULT_CAPACITY];

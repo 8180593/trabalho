@@ -25,10 +25,10 @@ public class AcaoJogadorTeste {
         acaoPlayer.carregarEnergia(connector, jogador);
         assertEquals(50, jogador.getEnergia());
     }
-    @Test
+    /**@Test
     public void andarTest(){
         acaoPlayer.andar();
 
-    }
+    }*/
 
 }
