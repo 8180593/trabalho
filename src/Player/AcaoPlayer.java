@@ -1,5 +1,6 @@
 package Player;
 
+import ClassImplementation.LinkedList;
 import ClassImplementation.Network;
 import ClassImplementation.Node;
 
@@ -13,20 +14,37 @@ import java.time.LocalTime;
 public class AcaoPlayer {
 
     /**
+     * Método Proxima Localização
      *
+     * Este método permite calcular as localizações para as quais o jogador
+     * pode viajar, pois encontram-se conectadas à sua localização atual.
+     * Todas as que verifiquem uma aresta, serão adicionadas à linked list
+     * "resultados".
+     *
+     * @param map o mapa em que o jogador se encontra
+     * @param jogador o jogador a querer realizar uma movimentação
+     * @return uma linked list com os vertices que possuem uma aresta com
+     * a localização atual do jogador
      */
-    public void andar(Map map, Player jogador){
-        Network network = new Network();
-        map.getAdjMatrix();
+    public LinkedList<Integer> proximaLocalizacao(Map map, Player jogador){
+        LinkedList<Integer> resultados = new LinkedList<>();
 
-        //map.iteratorShortestPath(jogador.getIdLocalAtual(),);
+        for(int i = 0; i < map.getContador(); i++) {
+            if (map.hasEdge(jogador.getIdLocalAtual(), i)) {
+                resultados.add(i);
+            }
+        }
+        return resultados;
+    }
 
-        //verifica que portals/connectors tem ligação com o local atual do jogador
-        //^ Este metodo se calhar ficaria bem no Map
-
-        //da a opção para o jogador escolher o local escolhido
-        //^ Este metodo se calhar ficaria bem no GUI
-        //fazer o set do localAtual para esse local (atraves do id)
+    //para rever, acho que precisa de ser feita no gui
+    public void andar(Player jogador, int escolha, LinkedList<Integer> resultados){
+        for (int i = 0; i < resultados.size(); i++){
+            if(resultados.get(i) == escolha){
+                jogador.setIdLocalAtual(escolha);
+                //andou com sucesso
+            }
+        }
     }
 
     /**

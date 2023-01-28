@@ -1,5 +1,6 @@
 package Test;
 
+import ClassImplementation.LinkedQueue;
 import Player.Connector;
 import Player.ConnectorHistorico;
 import Player.Equipas;
@@ -19,10 +20,12 @@ public class ConnectorTeste {
      */
     @Test
     void connectorTeste() {
-        Connector connector = new Connector("1", 1, 1, 1, 1);
+        Connector connector = new Connector("1", 1, 1, 1, 1,1);
         Player jogador = new Player("João", Equipas.Sparks);
         ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
-        connector.setPlayers(historico);
+        LinkedQueue<ConnectorHistorico> historicoJogador = new LinkedQueue<>();
+        historicoJogador.enqueue(historico);
+        connector.setPlayers(historicoJogador);
         assertEquals(connector.getPlayers().first().getPlayer(), jogador);
     }
 }

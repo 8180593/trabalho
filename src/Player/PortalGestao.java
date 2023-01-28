@@ -28,7 +28,9 @@ public class PortalGestao {
         if(energiaRetirada >= portal.getEnergiaAtual() && energiaRetirada < portal.getEnergiaAtual()*1.25){
             portal.setEstado(null);
             jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
-            portal.setEstado(null);
+
+
+
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
             portal.getRegistos().push(registo);
 

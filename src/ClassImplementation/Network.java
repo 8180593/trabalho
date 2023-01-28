@@ -21,7 +21,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         if (numVertices == 0) {
             return "Graph is empty";
         }
-        String result = new String("");
+        String result = "";
 
         result += "Adjacency Matrix\n";
         result += "----------------\n";
@@ -122,9 +122,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
                 vertices[i] = vertices[i + 1];
             }
             for (int i = index; i < numVertices; i++) {
-                for (int j = 0; j <= numVertices; j++) {
-                    adjMatrix[i][j] = adjMatrix[i + 1][j];
-                }
+                if (numVertices + 1 >= 0) System.arraycopy(adjMatrix[i + 1], 0, adjMatrix[i], 0, numVertices + 1);
             }
             for (int i = index; i < numVertices; i++) {
                 for (int j = 0; j < numVertices; j++) {
@@ -156,7 +154,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             visited[i] = false;
         }
 
-        traversalStack.push(new Integer(startIndex));
+        traversalStack.push(Integer.valueOf(startIndex));
         resultList.addToRear(vertices[startIndex]);
         visited[startIndex] = true;
 
@@ -168,7 +166,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             //on the stack
             for (int i = 0; (i < numVertices) && !found; i++) {
                 if ((adjMatrix[x.intValue()][i] < Double.POSITIVE_INFINITY) && !visited[i]) {
-                    traversalStack.push(new Integer(i));
+                    traversalStack.push(Integer.valueOf(i));
                     resultList.addToRear(vertices[i]);
                     visited[i] = true;
                     found = true;
@@ -197,7 +195,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             visited[i] = false;
         }
 
-        traversalQueue.enqueue(new Integer(startIndex));
+        traversalQueue.enqueue(Integer.valueOf(startIndex));
         visited[startIndex] = true;
 
         while (!traversalQueue.isEmpty()) {
@@ -208,7 +206,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
             //queue them up
             for (int i = 0; i < numVertices; i++) {
                 if ((adjMatrix[x.intValue()][i] < Double.POSITIVE_INFINITY) && !visited[i]) {
-                    traversalQueue.enqueue(new Integer(i));
+                    traversalQueue.enqueue(Integer.valueOf(i));
                     visited[i] = true;
                 }
             }
@@ -274,10 +272,10 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         } while (!traversalMinHeap.isEmpty() && !visited[targetIndex]);
 
         index = targetIndex;
-        stack.push(new Integer(index));
+        stack.push(Integer.valueOf(index));
         do {
             index = predecessor[index];
-            stack.push(new Integer(index));
+            stack.push(Integer.valueOf(index));
         } while (index != startIndex);
 
         while (!stack.isEmpty()) {
@@ -324,7 +322,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         Iterator<Integer> it = iteratorShortestPathIndices(startIndex, targetIndex);
 
         if (it.hasNext()) {
-            index1 = ((Integer) it.next()).intValue();
+            index1 = it.next().intValue();
         } else {
             return Double.POSITIVE_INFINITY;
         }
@@ -436,13 +434,15 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
                 = new double[vertices.length * 2][vertices.length * 2];
 
         for (int i = 0; i < numVertices; i++) {
-            for (int j = 0; j < numVertices; j++) {
-                largerAdjMatrix[i][j] = adjMatrix[i][j];
-            }
+            System.arraycopy(adjMatrix[i], 0, largerAdjMatrix[i], 0, numVertices);
             largerVertices[i] = vertices[i];
         }
 
         vertices = largerVertices;
         adjMatrix = largerAdjMatrix;
+    }
+
+    public boolean hasEdge(int startIndex, int targetIndex){
+        return adjMatrix[startIndex][targetIndex] > 0;
     }
 }

@@ -37,8 +37,7 @@ public class ArrayList<T> implements ListADT<T>, Iterable<T> {
     protected void expandCapacity() {
         T[] newList = (T[]) (new Object[list.length * ExpandBy]);
 
-        for (int i = 0; i < this.list.length; i++)
-            newList[i] = this.list[i];
+        System.arraycopy(this.list, 0, newList, 0, this.list.length);
 
         this.list = newList;
     }

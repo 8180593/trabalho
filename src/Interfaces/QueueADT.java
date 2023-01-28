@@ -13,7 +13,7 @@ public interface QueueADT<T> {
      * @param element the element to be added to
      * the rear of this queue
      */
-    public void enqueue(T element);
+    void enqueue(T element);
 
     /**
      * Removes and returns the element at the front of
@@ -21,7 +21,7 @@ public interface QueueADT<T> {
      *
      * @return the element at the front of this queue
      */
-    public T dequeue() throws EmptyCollectionException;
+    T dequeue() throws EmptyCollectionException;
 
     /**
      * Returns without removing the element at the front of
@@ -29,14 +29,14 @@ public interface QueueADT<T> {
      *
      * @return the first element in this queue
      */
-    public T first() throws EmptyCollectionException;
+    T first() throws EmptyCollectionException;
 
     /**
      * Returns true if this queue contains no elements.
      *
      * @return true if this queue is empty
      */
-    public boolean isEmpty();
+    boolean isEmpty();
 
     /**
      * Returns the number of elements in this queue.
@@ -44,12 +44,12 @@ public interface QueueADT<T> {
      * @return the integer representation of the size
      * of this queue
      */
-    public int size();
+    int size();
 
     /**
      * Returns a string representation of this queue.
      *
      * @return the string representation of this queue
      */
-    public String toString();
+    String toString();
 }

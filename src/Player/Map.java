@@ -1,9 +1,6 @@
 package Player;
 
-import ClassImplementation.LinkedList;
-import ClassImplementation.LinkedQueue;
 import ClassImplementation.Network;
-import ClassImplementation.Node;
 import Exceptions.InvalidValue;
 import Interfaces.MapInterface;
 import Interfaces.NetworkADT;
@@ -14,8 +11,12 @@ import Interfaces.NetworkADT;
  * @author Orlando Pires 8210367
  */
 public class Map extends Network<String> implements MapInterface{
+    private static int contador;
+    private final NetworkADT network = new Network();
 
-    private NetworkADT network = new Network();
+    public int getContador(){
+        return contador;
+    }
 
     /**
      * Adicionar um portal ao mapa
@@ -28,33 +29,13 @@ public class Map extends Network<String> implements MapInterface{
 
      /**
      * Temos que deixar o registo mais recente de cada jogador
-      * Falta testar
      * @param connector
      */
     @Override
     public void removerRegistosConnector(Connector connector) {
-        LinkedQueue<ConnectorHistorico> UltimoRegisto= new LinkedQueue<>();
-        Node current = connector.getPlayers().getFront();
 
-        for(int i = 0; i < connector.getPlayers().size(); i++){
-            ConnectorHistorico registo = (ConnectorHistorico) current.getElement();
-            if(UltimoRegisto.isEmpty()){
-                UltimoRegisto.enqueue(registo);
-            }
-            else{
-                ConnectorHistorico ultimo = UltimoRegisto.getRear().getElement();
-                if(registo.getPlayer().getName().equals(ultimo.getPlayer().getName())){
-                    UltimoRegisto.dequeue();
-                    UltimoRegisto.enqueue(registo);
-                }
-                else{
-                    UltimoRegisto.enqueue(registo);
-                }
-            }
-            current = current.getNext();
-        }
     }
-   /**
+    /**
      *  Editar a localização de um portal
      *  1-Verifica se a latitude e longitude estão dentro dos limites, caso não estjam lança uma exceção
      * @param portal portal a ser alterado
@@ -72,7 +53,7 @@ public class Map extends Network<String> implements MapInterface{
             throw new InvalidValue("Longitude fora dos limites");
         else
             portal.setLongitude(longitude);
-    }
+   }
     /**
      * Editar o nível de energia de um portal
      * @param portal portal a ser editado

@@ -8,13 +8,14 @@ import java.util.UUID;
  * @author 8210367 Orlando Pires
  */
 public class Portal {
+    private final int vertice;
     private String id;
     private double latitude;
     private double longitude;
     private double energiaAtual;
     private Equipas estado;
     private double energiaTotal;
-    private LinkedStack<Registos> registos;
+    private final LinkedStack<Registos> registos;
 
     /**
      *
@@ -24,13 +25,14 @@ public class Portal {
      * @param energiaAtual
      * @param estado
      */
-    public Portal(String id, double latitude, double longitude, double energiaAtual, Equipas estado) {
+    public Portal(String id, double latitude, double longitude, double energiaAtual, Equipas estado, int vertice) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.energiaAtual = energiaAtual;
         this.estado = estado;
         this.registos = new LinkedStack<Registos>();
+        this.vertice = vertice;
     }
 
     public LinkedStack<Registos> getRegistos() {

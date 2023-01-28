@@ -6,27 +6,29 @@ package Player;
 public class Player {
     private Double energia;
     private String name;
-    private Double nivel;
+    private int nivel;
+    private double experiencia;
     private Equipas equipa;
-    private String idLocalAtual;
-    //^ desta forma so basta uma variavel, mas perderemos tempo em pesquisa
-    //alternativamente:
-    //private Portal portalAtual;
-    //private Connector connectorAtual;
+    private int localAtual;
+    private double expParaProximoNivel;
+    private final int X = 4;
+    private final int Y = 2;
 
     public Player(String name, Equipas equipa) {
         this.energia = 0.0;
         this.name = name;
-        this.nivel = 0.0;
+        this.nivel = 1;
         this.equipa = equipa;
+        this.experiencia = 0.0;
+        this.expParaProximoNivel = 100;
     }
 
-    public String getIdLocalAtual() {
-        return idLocalAtual;
+    public int getIdLocalAtual() {
+        return localAtual;
     }
 
-    public void setIdLocalAtual(String idLocalAtual) {
-        this.idLocalAtual = idLocalAtual;
+    public void setIdLocalAtual(int idLocalAtual) {
+        this.localAtual = idLocalAtual;
     }
 
     public Double getEnergia() {
@@ -48,13 +50,21 @@ public class Player {
         this.name = name;
     }
 
-    public Double getNivel() {
+    public int getNivel() {
         return this.nivel;
     }
 
-    public void setNivel(Double nivel) {
+    public void setNivel(int nivel) {
         this.nivel = nivel;
     }
+
+    public double getExperiencia(){ return this.experiencia; }
+
+    public void setExperiencia(double experiencia){ this.experiencia = experiencia; }
+
+    public double getExpParaProximoNivel(){ return this.expParaProximoNivel;}
+
+    public void setExpParaProximoNivel(double expParaProximoNivel){ this.expParaProximoNivel = expParaProximoNivel; }
 
     public Equipas getEquipa() {
         return this.equipa;
@@ -62,5 +72,14 @@ public class Player {
 
     public void setEquipa(Equipas equipa) {
         this.equipa = equipa;
+    }
+
+    public void calcularExperienciaProximoNivel(){
+        if(getExperiencia() > getExpParaProximoNivel()){
+            double tempExp = getExpParaProximoNivel();
+            tempExp += tempExp * Math.pow(getNivel()/X, Y);
+
+            setExpParaProximoNivel(tempExp);
+        }
     }
 }

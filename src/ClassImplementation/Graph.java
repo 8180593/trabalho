@@ -61,7 +61,7 @@ public class Graph<T> implements GraphADT<T> {
             visited[i] = false;
         }
 
-        traversalQueue.enqueue(new Integer(startIndex));
+        traversalQueue.enqueue(Integer.valueOf(startIndex));
         visited[startIndex] = true;
 
         while (!traversalQueue.isEmpty()) {
@@ -72,7 +72,7 @@ public class Graph<T> implements GraphADT<T> {
             //queue them up
             for (int i = 0; i < numVertices; i++) {
                 if (adjMatrix[x.intValue()][i] && !visited[i]) {
-                    traversalQueue.enqueue(new Integer(i));
+                    traversalQueue.enqueue(Integer.valueOf(i));
                     visited[i] = true;
                 }
             }
@@ -97,7 +97,7 @@ public class Graph<T> implements GraphADT<T> {
             visited[i] = false;
         }
 
-        traversalStack.push(new Integer(startIndex));
+        traversalStack.push(Integer.valueOf(startIndex));
         visited[startIndex] = true;
 
         while (!traversalStack.isEmpty()) {
@@ -108,7 +108,7 @@ public class Graph<T> implements GraphADT<T> {
             //push them onto the stack
             for (int i = 0; i < numVertices; i++) {
                 if (adjMatrix[x.intValue()][i] && !visited[i]) {
-                    traversalStack.push(new Integer(i));
+                    traversalStack.push(Integer.valueOf(i));
                     visited[i] = true;
                 }
             }
@@ -138,7 +138,7 @@ public class Graph<T> implements GraphADT<T> {
             visited[i] = false;
         }
 
-        traversalQueue.enqueue(new Integer(startIndex));
+        traversalQueue.enqueue(Integer.valueOf(startIndex));
         visited[startIndex] = true;
         pathLength[startIndex] = 0;
         predecessor[startIndex] = -1;
@@ -152,7 +152,7 @@ public class Graph<T> implements GraphADT<T> {
                 if (adjMatrix[index][i] && !visited[i]) {
                     pathLength[i] = pathLength[index] + 1;
                     predecessor[i] = index;
-                    traversalQueue.enqueue(new Integer(i));
+                    traversalQueue.enqueue(Integer.valueOf(i));
                     visited[i] = true;
                 }
             }
@@ -164,14 +164,14 @@ public class Graph<T> implements GraphADT<T> {
 
         LinkedStack<Integer> stack = new LinkedStack<Integer>();
         index = targetIndex;
-        stack.push(new Integer(index));
+        stack.push(Integer.valueOf(index));
         do {
             index = predecessor[index];
-            stack.push(new Integer(index));
+            stack.push(Integer.valueOf(index));
         } while (index != startIndex);
 
         while (!stack.isEmpty()) {
-            resultList.addToRear(((Integer) stack.pop()));
+            resultList.addToRear(stack.pop());
         }
 
         return resultList.iterator();
@@ -185,7 +185,7 @@ public class Graph<T> implements GraphADT<T> {
         Iterator<Integer> it = iteratorShortestPathIndices(startIndex,
                 targetIndex);
         while (it.hasNext()) {
-            resultList.addToRear(vertices[((Integer) it.next()).intValue()]);
+            resultList.addToRear(vertices[it.next().intValue()]);
         }
         return resultList.iterator();
     }
@@ -238,9 +238,7 @@ public class Graph<T> implements GraphADT<T> {
             }
 
             for (int i = index; i < numVertices; i++) {
-                for (int j = 0; j <= numVertices; j++) {
-                    adjMatrix[i][j] = adjMatrix[i + 1][j];
-                }
+                if (numVertices + 1 >= 0) System.arraycopy(adjMatrix[i + 1], 0, adjMatrix[i], 0, numVertices + 1);
             }
 
             for (int i = index; i < numVertices; i++) {
@@ -261,13 +259,11 @@ public class Graph<T> implements GraphADT<T> {
     }
     private void expandCapacity() {
         T[] larger = (T[])(new Object[vertices.length*2]);
-        for (int i = 0; i < vertices.length; i++)
-            larger[i] = vertices[i];
+        System.arraycopy(vertices, 0, larger, 0, vertices.length);
         vertices = larger;
         boolean[][] largerMatrix = new boolean[vertices.length][vertices.length];
         for (int i = 0; i < numVertices; i++)
-            for (int j = 0; j < numVertices; j++)
-                largerMatrix[i][j] = adjMatrix[i][j];
+            System.arraycopy(adjMatrix[i], 0, largerMatrix[i], 0, numVertices);
         adjMatrix = largerMatrix;
     }
 
@@ -287,7 +283,7 @@ public class Graph<T> implements GraphADT<T> {
         if (numVertices == 0) {
             return "Graph is empty";
         }
-        String result = new String("");
+        String result = "";
         result += "Adjacency Matrix\n";
         result += "----------------\n";
         result += "index\t";

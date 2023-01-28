@@ -15,14 +15,14 @@ import java.awt.event.ActionListener;
  * @author Orlando Pires 8210367
  */
 public class GUI implements ActionListener {
-    private LinkedList<Player> players = new LinkedList<>();
-    private JFrame frame = new JFrame("JFrame Example");
-    private JButton button = new JButton("Adicionar Jogador");
-    private JLabel label = new JLabel(" Adicionar Jogadores");
-    private JLabel jogador = new JLabel("Digite o nome do Jogador:");
-    private JTextField fieldName = new JTextField();
-    private Checkbox Sparks = new Checkbox("Sparks");
-    private Checkbox Giants = new Checkbox("Giants");
+    private final LinkedList<Player> players = new LinkedList<>();
+    private final JFrame frame = new JFrame("JFrame Example");
+    private final JButton button = new JButton("Adicionar Jogador");
+    private final JLabel label = new JLabel(" Adicionar Jogadores");
+    private final JLabel jogador = new JLabel("Digite o nome do Jogador:");
+    private final JTextField fieldName = new JTextField();
+    private final Checkbox Sparks = new Checkbox("Sparks");
+    private final Checkbox Giants = new Checkbox("Giants");
     public GUI(){
         button.setBounds(250, 150,100,20);
         button.addActionListener(this);
@@ -51,7 +51,7 @@ public class GUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == button)
             if(addPlayer())
-                JOptionPane.showMessageDialog(null, "Jogador adicionado com sucesso");
+                System.out.println(players.getRear().getElement().getName());
     }
     public boolean addPlayer(){
         if(!Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty()){
@@ -71,27 +71,27 @@ public class GUI implements ActionListener {
             return false;
         }
         else if(Sparks.getState() && Giants.getState() && !fieldName.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "So pode selecionar uma equipa");
+            JOptionPane.showMessageDialog(frame, "So pode selecionar uma equipa");
             return false;
         }
         else if(Sparks.getState() && Giants.getState() && fieldName.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Digite o nome do jogador e Selecione apenas uma equipa");
+            JOptionPane.showMessageDialog(frame, "Digite o nome do jogador e Selecione apenas uma equipa");
             return false;
         }
         else if(!Sparks.getState() && !Giants.getState() && !fieldName.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Selecione uma equipa");
+            JOptionPane.showMessageDialog(frame, "Selecione uma equipa");
             return false;
         }
         else if(Sparks.getState() && !Giants.getState() && fieldName.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Digite o nome do Jogador");
+            JOptionPane.showMessageDialog(frame, "Digite o nome do Jogador");
             return false;
         }
         else if(!Sparks.getState() && Giants.getState() && fieldName.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Digite o nome do Jogador");
+            JOptionPane.showMessageDialog(frame, "Digite o nome do Jogador");
             return false;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Digite o nome do jogador e Selecione uma Equipa");
+            JOptionPane.showMessageDialog(frame, "Digite o nome do jogador e Selecione uma Equipa");
             return false;
         }
     }
@@ -101,9 +101,11 @@ public class GUI implements ActionListener {
     public boolean verificaJogador(Player player){
         Node<Player> current = players.getFront();
         int i = 0;
+        if(current == null)
+            return false;
         do{
             if(current.getElement().equals(player)){
-                JOptionPane.showMessageDialog(null, "Jogador ja existe");
+                JOptionPane.showMessageDialog(frame, "Jogador ja existe");
                 return true;
             }
             current = current.getNext();

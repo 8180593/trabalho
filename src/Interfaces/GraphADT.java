@@ -7,16 +7,16 @@ import java.util.Iterator;
  * @author 8210367 Orlando Pires
  */
 public interface GraphADT <T>{
-    public void addVertex(T vertex);
-    public void removeVertex(T vertex);
-    public void addEdge(T vertex1, T vertex2);
-    public void removeEdge(T vertex1, T vertex2);
-    public Iterator<T> iteratorBFS(T startVertex);
-    public Iterator<T> iteratorDFS(T startVertex);
-    public Iterator<T> iteratorShortestPath(T startVertex, T targetVertex);
-    public boolean isEmpty();
-    public boolean isConnected();
-    public int size();
-    public String toString();
+    void addVertex(T vertex);
+    void removeVertex(T vertex);
+    void addEdge(T vertex1, T vertex2);
+    void removeEdge(T vertex1, T vertex2);
+    Iterator<T> iteratorBFS(T startVertex);
+    Iterator<T> iteratorDFS(T startVertex);
+    Iterator<T> iteratorShortestPath(T startVertex, T targetVertex);
+    boolean isEmpty();
+    boolean isConnected();
+    int size();
+    String toString();
 
 }

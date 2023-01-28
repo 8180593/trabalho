@@ -1,0 +1,22 @@
+LinkedQueue<ConnectorHistorico> UltimoRegisto= new LinkedQueue<>();
+        Node<ConnectorHistorico> current = connector.getPlayers().getFront();
+        LinkedList<ConnectorHistorico> lista = new LinkedList<>();
+        
+        for (int i = 0; i < connector.getPlayers().size(); i++) {
+            ConnectorHistorico registo = (ConnectorHistorico) current.getElement();
+            if (UltimoRegisto.isEmpty()) {
+                UltimoRegisto.enqueue(registo);
+            } else {
+                ConnectorHistorico ultimo = UltimoRegisto.getRear().getElement();
+                if (ultimo.getPlayer().equals(registo.getPlayer())) {
+                    if (ultimo.getData().isBefore(registo.getData())) {
+                        UltimoRegisto.dequeue();
+                        UltimoRegisto.enqueue(registo);
+                    } else {
+                        UltimoRegisto.enqueue(registo);
+                    }
+                }
+            }
+            current = current.getNext();
+        }
+        connector.setPlayers(UltimoRegisto);

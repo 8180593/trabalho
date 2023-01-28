@@ -8,9 +8,9 @@ import java.util.NoSuchElementException;
  * @author 8210367 Orlando Pires
  */
 public class ArrayIterator<T> implements Iterator {
-    private int count;
+    private final int count;
     private int current;
-    private T[] items;
+    private final T[] items;
 
     public ArrayIterator (T[] collection, int size) {
         items = collection;

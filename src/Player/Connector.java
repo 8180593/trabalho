@@ -6,6 +6,7 @@ package Player;
 import ClassImplementation.LinkedQueue;
 
 public class Connector {
+    private final int vertice;
     private String id;
     private double Longitude;
     private double latitude;
@@ -13,13 +14,14 @@ public class Connector {
     private long intervaloTempo;
     private LinkedQueue<ConnectorHistorico> players;
 
-    public Connector(String id, double longitude, double latitude, double energia, long intervaloTempo) {
+    public Connector(String id, double longitude, double latitude, double energia, long intervaloTempo, int vertice) {
         this.id = id;
         Longitude = longitude;
         this.latitude = latitude;
         this.energia = energia;
         this.intervaloTempo = intervaloTempo;
         this.players = new LinkedQueue<>();
+        this.vertice = vertice;
     }
 
     public String getId() {
@@ -69,7 +71,7 @@ public class Connector {
         return this.players;
     }
 
-    public void setPlayers(ConnectorHistorico player) {
-        players.enqueue(player);
+    public void setPlayers(LinkedQueue<ConnectorHistorico> player) {
+        players = player;
     }
 }
