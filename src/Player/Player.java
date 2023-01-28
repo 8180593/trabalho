@@ -74,10 +74,14 @@ public class Player {
         this.equipa = equipa;
     }
 
-    public void calcularExperienciaProximoNivel(){
+    public void mudarProximoNivel(){
         if(getExperiencia() > getExpParaProximoNivel()){
+            int tempNivel = getNivel();
+            tempNivel++;
+            setNivel(tempNivel);
+
             double tempExp = getExpParaProximoNivel();
-            tempExp += tempExp * Math.pow(getNivel()/X, Y);
+            tempExp += tempExp * Math.pow(tempNivel/X, Y);
 
             setExpParaProximoNivel(tempExp);
         }

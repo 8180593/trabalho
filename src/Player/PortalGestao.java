@@ -7,6 +7,8 @@ import Exceptions.InvalidValue;
  * @author 8210367 Orlando Pires
  */
 public class PortalGestao {
+    private final int BONUS_NEUTRALIZAR = 100;
+    private final int BONUS_CONQUISTAR = 250;
     /**
      * Metodo Determinar Estado Atacado
      *
@@ -29,7 +31,10 @@ public class PortalGestao {
             portal.setEstado(null);
             jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
 
+            jogador.setExperiencia(jogador.getExperiencia() + portal.getEnergiaAtual() + BONUS_NEUTRALIZAR);
+            jogador.mudarProximoNivel();
 
+            portal.setEnergiaAtual(0);
 
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
             portal.getRegistos().push(registo);
@@ -40,14 +45,18 @@ public class PortalGestao {
             determinarEstadoConquistado(portal, energiaSobra, jogador);
             jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
 
+            jogador.setExperiencia(jogador.getExperiencia() + energiaRetirada + BONUS_CONQUISTAR);
+            jogador.mudarProximoNivel();
+
             portal.setEstado(jogador.getEquipa());
-            Registos registo = new Registos(jogador, Acao.CONQUISTOU, energiaRetirada);
-            portal.getRegistos().push(registo);
 
         }else{
             portal.setEnergiaAtual(portal.getEnergiaAtual()-energiaRetirada);
             Registos registo = new Registos(jogador, Acao.ATACOU, energiaRetirada);
             portal.getRegistos().push(registo);
+
+            jogador.setExperiencia(jogador.getExperiencia() + energiaRetirada);
+            jogador.mudarProximoNivel();
 
             jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
         }
@@ -66,6 +75,9 @@ public class PortalGestao {
             throw new InvalidValue("Não tem energia suficiente para fortalecer o portal");
         }
         portal.setEnergiaAtual(portal.getEnergiaAtual() + energiaDoada);
+
+        jogador.setExperiencia(jogador.getExperiencia() + energiaDoada);
+        jogador.mudarProximoNivel();
 
         Registos registo = new Registos(jogador, Acao.FORTALECEU, energiaDoada);
         portal.getRegistos().push(registo);

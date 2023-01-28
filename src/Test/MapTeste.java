@@ -1,15 +1,18 @@
 package Test;
 
+import Exceptions.InvalidValue;
 import Player.Player;
 import Player.Equipas;
 import Player.Connector;
 import Player.AcaoPlayer;
 import Player.Map;
+import Player.Portal;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**public class MapTeste {
+public class MapTeste {
     AcaoPlayer acaoJogador = new AcaoPlayer();
     Map mapa = new Map();
 
@@ -41,5 +44,87 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         acaoJogador.carregarEnergia(connector, jogador);
         mapa.removerRegistosConnector(connector);
         assertEquals(2, connector.getPlayers().size());
+    }*/
+
+    /**
+     * Teste de edição de um portal
+     * Alteração da latitude de 1 para 2
+     */
+    @Test
+    void edtiProtalTestPass() throws InvalidValue {
+        Portal portal =new Portal("1", 1,1,50, Equipas.Sparks, 1);
+        mapa.editPortal(portal, 2, 1);
+        assertEquals(2, portal.getLatitude());
     }
-}*/
+
+    /**
+     * Teste de edição de um portal
+     * Forçar o metodo a lançar a exceção por causa da latitude
+     */
+    @Test
+    void EditPortalTestFailLatitudeInferior() throws InvalidValue {
+        Portal portal =new Portal("1", 1,1,50, Equipas.Sparks, 1);
+        assertThrows("Latitude fora dos limites", InvalidValue.class, () -> {
+            mapa.editPortal(portal, -91, 1);
+        });
+    }
+
+    /**
+     * Teste de edição de um portal
+     * Forçar o metodo a lançar a exceção por causa da latitude
+     */
+    @Test
+    void EditPortalTestFailLatitudeSuperior() throws InvalidValue {
+        Portal portal =new Portal("1", 1,1,50, Equipas.Sparks, 1);
+        assertThrows("Latitude fora dos limites", InvalidValue.class, () -> {
+            mapa.editPortal(portal, 91, 1);
+        });
+    }
+
+    /**
+     * Teste de edição de um portal
+     * Forçar o metodo a lançar a exceção por causa da longitude
+     */
+    @Test
+    void EditPortalTestFailLongitudeInferior() throws InvalidValue {
+        Portal portal =new Portal("1", 1,1,50, Equipas.Sparks, 1);
+        assertThrows("Longitude fora dos limites", InvalidValue.class, () -> {
+            mapa.editPortal(portal, 1, -181);
+        });
+    }
+
+    /**
+     * Teste de edição de um portal
+     * Forçar o metodo a lançar a exceção por causa da longitude
+     */
+    @Test
+    void EditPortalTestFailLongitudeSuperior() throws InvalidValue {
+        Portal portal =new Portal("1", 1,1,50, Equipas.Sparks, 1);
+        assertThrows("Longitude fora dos limites", InvalidValue.class, () -> {
+            mapa.editPortal(portal, 1, 181);
+        });
+    }
+
+    /**
+     * Teste de edição de um portal
+     * Alteração da Energia de 1 para 2
+     */
+    @Test
+    void EditPortalEnergyTest() throws InvalidValue {
+        Portal portal =new Portal("1", 1,1,50, Equipas.Sparks, 1);
+        mapa.editPortal(portal, 2);
+        assertEquals(2, portal.getEnergiaAtual());
+    }
+
+    /**
+     * Teste de edição de um portal
+     * Forçar o metodo a lançar a exceção por causa da energia
+     */
+    @Test
+    void EditPortalEnergyTestFail() throws InvalidValue {
+        Portal portal =new Portal("1", 1,1,50, Equipas.Sparks, 1);
+        assertThrows("Energia fora dos limites", InvalidValue.class, () -> {
+            mapa.editPortal(portal, -1);
+        });
+    }
+}
