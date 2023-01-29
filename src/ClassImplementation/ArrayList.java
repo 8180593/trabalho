@@ -4,7 +4,7 @@ import Exceptions.EmptyCollectionException;
 import Interfaces.ListADT;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+import Exceptions.ElementNotFoundException;
 
 /**
  * @author 8210311 Daniela Moreira
@@ -186,7 +186,7 @@ public class ArrayList<T> implements ListADT<T>, Iterable<T> {
         @Override
         public T next() {
             if (! hasNext())
-                throw new NoSuchElementException();
+                throw new ElementNotFoundException("do not have next element");
 
             T result = (T) ArrayList.this.list[this.current];
             this.current++;

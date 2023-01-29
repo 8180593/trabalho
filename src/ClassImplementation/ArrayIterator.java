@@ -1,7 +1,8 @@
 package ClassImplementation;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+
+import Exceptions.ElementNotFoundException;
 
 /**
  * @author 8210311 Daniela Moreira
@@ -25,10 +26,9 @@ public class ArrayIterator<T> implements Iterator {
     }
 
 
-    public T next()
-    {
+    public T next() {
         if (! hasNext())
-            throw new NoSuchElementException();
+            throw new ElementNotFoundException("No next element");
 
         current++;
         return items[current - 1];
@@ -36,8 +36,7 @@ public class ArrayIterator<T> implements Iterator {
     }
 
 
-    public void remove() throws UnsupportedOperationException
-    {
+    public void remove() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
 }
