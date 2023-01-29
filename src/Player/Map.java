@@ -23,7 +23,7 @@ public class Map extends Network<String> implements MapInterface{
      * @param portal novo portal a ser adicionado
      */
     @Override
-    public void addProtal(Portal portal) {
+    public void addPortal(Portal portal) {
         network.addVertex(portal);
     }
 
