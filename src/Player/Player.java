@@ -13,6 +13,7 @@ public class Player {
     private double expParaProximoNivel;
     private final int X = 4;
     private final int Y = 2;
+    private double energiaCapacidade = nivel + 49;
 
     public Player(String name, Equipas equipa) {
         this.energia = 0.0;
@@ -75,13 +76,13 @@ public class Player {
     }
 
     public void mudarProximoNivel(){
-        if(getExperiencia() > getExpParaProximoNivel()){
+        while(getExperiencia() > getExpParaProximoNivel()){
             int tempNivel = getNivel();
             tempNivel++;
             setNivel(tempNivel);
 
             double tempExp = getExpParaProximoNivel();
-            tempExp += tempExp * Math.pow(tempNivel/X, Y);
+            tempExp += tempExp * Math.pow((tempNivel/X), Y);
 
             setExpParaProximoNivel(tempExp);
         }
