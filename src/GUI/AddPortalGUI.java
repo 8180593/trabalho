@@ -25,11 +25,11 @@ public class AddPortalGUI implements ActionListener {
     private final Checkbox Giants = new Checkbox("Giants");
     private final Checkbox Neutro = new Checkbox("Neutro");
 
-    public AddPortalGUI(){
-        button.setBounds(250, 150,100,20);
+    public AddPortalGUI() {
+        button.setBounds(250, 150, 100, 20);
         button.addActionListener(this);
-        label.setBounds(100,100, 100,20);
-        iDportal.setBounds(100,100, 100,20);
+        label.setBounds(100, 100, 100, 20);
+        iDportal.setBounds(100, 100, 100, 20);
         fieldIdProtal.setBounds(150, 100, 100, 10);
 
         JPanel panel = new JPanel();
@@ -57,13 +57,10 @@ public class AddPortalGUI implements ActionListener {
         frame.pack();
         frame.setVisible(true);
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == button)
+        if (e.getSource() == button)
             System.out.println("Eu sou lindo!!");
-    }
-
-    public static void main(String[] args) {
-        new AddPortalGUI();
     }
 }
