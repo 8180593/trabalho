@@ -7,7 +7,7 @@ package GUI;
 public class GUI{
 
     public static void main(String[] args) {
-        new AddJogadorGUI();
+        new AddPortalGUI();
     }
 
 }
