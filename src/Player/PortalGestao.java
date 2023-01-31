@@ -29,7 +29,7 @@ public class PortalGestao {
     public void destruirPortal(Portal portal, double energiaRetirada, Player jogador) {
         double tempEnergiaSobra = energiaRetirada - portal.getEnergiaAtual();
 
-        if(tempEnergiaSobra >= 0 && tempEnergiaSobra < portal.getEnergiaTotal() * 0.25){
+        if(tempEnergiaSobra >= 0 && tempEnergiaSobra < portal.getEnergiaMaxima() * 0.25){
             portal.setEstado(null);
             jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
 
@@ -37,11 +37,12 @@ public class PortalGestao {
             jogador.mudarProximoNivel();
 
             portal.setEnergiaAtual(0);
+            portal.setNomeJogador(null);
 
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
             portal.getRegistos().push(registo);
 
-        }else if(tempEnergiaSobra >= 0 && tempEnergiaSobra > portal.getEnergiaTotal() * 0.25){
+        }else if(tempEnergiaSobra >= 0 && tempEnergiaSobra > portal.getEnergiaMaxima() * 0.25){
             determinarEstadoConquistado(portal, tempEnergiaSobra, jogador);
             jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
 
@@ -49,6 +50,7 @@ public class PortalGestao {
             jogador.mudarProximoNivel();
 
             portal.setEstado(jogador.getEquipa());
+            portal.setNomeJogador(jogador.getName());
 
         }else{
             portal.setEnergiaAtual(portal.getEnergiaAtual()-energiaRetirada);
@@ -74,13 +76,13 @@ public class PortalGestao {
         if(energiaDoada > jogador.getEnergia()) {
             throw new InvalidValue("Não tem energia suficiente para fortalecer o portal");
         }
-        if(portal.getEnergiaAtual() == portal.getEnergiaTotal()) {
+        if(portal.getEnergiaAtual() == portal.getEnergiaMaxima()) {
             throw new InvalidValue("Este portal já se encontra com a capacidade máxima.");
         }
 
-        if(portal.getEnergiaAtual() + energiaDoada > portal.getEnergiaTotal()){
-            double tempEnergiaSobra = portal.getEnergiaTotal() - portal.getEnergiaAtual() - energiaDoada;
-            portal.setEnergiaAtual(portal.getEnergiaTotal());
+        if(portal.getEnergiaAtual() + energiaDoada > portal.getEnergiaMaxima()){
+            double tempEnergiaSobra = portal.getEnergiaMaxima() - portal.getEnergiaAtual() - energiaDoada;
+            portal.setEnergiaAtual(portal.getEnergiaMaxima());
 
             jogador.setEnergia(jogador.getEnergia() - (energiaDoada-tempEnergiaSobra));
             jogador.setExperiencia(jogador.getExperiencia() + (energiaDoada-tempEnergiaSobra));

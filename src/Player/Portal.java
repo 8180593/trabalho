@@ -1,82 +1,35 @@
 package Player;
 
 import ClassImplementation.LinkedStack;
-import java.util.UUID;
 
 /**
  * @author 8210311 Daniela Moreira
  * @author 8210367 Orlando Pires
  */
-public class Portal {
-    private final int vertice;
-    private String id;
-    private double latitude;
-    private double longitude;
-    private double energiaAtual;
+public class Portal extends Local{
     private Equipas estado;
-    private double energiaTotal;
-    private final LinkedStack<Registos> registos;
+    private double energiaMaxima;//energia maxima
+    private final LinkedStack<Registos> registos = null;
+    private String nomeJogador;
 
-    /**
-     *
-     * @param id
-     * @param latitude
-     * @param longitude
-     * @param energiaTotal
-     * @param estado
-     */
-    public Portal(String id, double latitude, double longitude, double energiaTotal, Equipas estado, int vertice) {
-        this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.energiaTotal = energiaTotal;
+
+    public Portal(String id, double latitude, double longitude, Equipas estado, double energiaMaxima) {
+        super(id, latitude, longitude);
         this.estado = estado;
-        this.registos = new LinkedStack<Registos>();
-        this.vertice = vertice;
+        this.energiaMaxima = energiaMaxima;
+        this.nomeJogador = null;
     }
 
     public LinkedStack<Registos> getRegistos() {
         return registos;
     }
 
-    public double getEnergiaTotal() {
-        return energiaTotal;
+    public double getEnergiaMaxima() {
+        return energiaMaxima;
     }
 
-    public void setEnergiaTotal(double energiaTotal) {
-        this.energiaTotal = energiaTotal;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public double getLatitude() {
-        return this.latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return this.longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getEnergiaAtual() {
-        return this.energiaAtual;
-    }
-
-    public void setEnergiaAtual(double energia) {
-        this.energiaAtual = energia;
+    public void setEnergiaMaxima(double energiaMaxima) {
+        this.energiaMaxima = energiaMaxima;
     }
 
     public Equipas getEstado() {
@@ -86,4 +39,13 @@ public class Portal {
     public void setEstado(Equipas estado) {
         this.estado = estado;
     }
+
+    public String getNomeJogador() {
+        return nomeJogador;
+    }
+
+    public void setNomeJogador(String nomeJogador) {
+        this.nomeJogador = nomeJogador;
+    }
+
 }

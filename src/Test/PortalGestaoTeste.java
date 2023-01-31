@@ -52,9 +52,9 @@ public class PortalGestaoTeste {
      */
     @Test
     void destruirPortaltestEnfraquecer(){
-        Portal portal = new Portal("0", 1,1,10, Equipas.Giants,1);
+        Portal portal = new Portal("0", 1,1, Equipas.Giants,10);
         Player jogador = new Player("Duarte", Equipas.Sparks);
-        Connector connectorFraco = new Connector("1", 1,1,10, 0,1);
+        Connector connectorFraco = new Connector("1", 1,1,10);
         acaoJogador.carregarEnergia(connectorFraco, jogador);
         portalGestao.destruirPortal(portal, 2, jogador);
         assertEquals(8, portal.getEnergiaAtual());
@@ -66,9 +66,9 @@ public class PortalGestaoTeste {
      */
     @Test
     void fortalecerPortalTest() throws InvalidValue {
-        Portal portal = new Portal("0", 1,1,10, Equipas.Giants,1);
+        Portal portal = new Portal("0", 1,1, Equipas.Giants,10);
         Player jogador = new Player("Duarte", Equipas.Giants);
-        Connector connectorFraco = new Connector("1", 1,1,10, 0,1);
+        Connector connectorFraco = new Connector("1", 1,1,10);
         acaoJogador.carregarEnergia(connectorFraco, jogador);
         portalGestao.fortalecerPortal(portal,2, jogador);
         assertEquals(12, portal.getEnergiaAtual());
@@ -79,9 +79,9 @@ public class PortalGestaoTeste {
      */
     @Test
     void fortalecerPortalTestExcecao() throws InvalidValue {
-        Portal portal = new Portal("0", 1,1,10, Equipas.Giants,1);
+        Portal portal = new Portal("0", 1,1,Equipas.Giants,10);
         Player jogador = new Player("Duarte", Equipas.Giants);
-        Connector connectorFraco = new Connector("1", 1,1,10, 0,1);
+        Connector connectorFraco = new Connector("1", 1,1,10);
         acaoJogador.carregarEnergia(connectorFraco, jogador);
         assertThrows("Não tem energia suficiente para fortalecer o portal", InvalidValue.class,()-> portalGestao.fortalecerPortal(portal,12, jogador));
     }

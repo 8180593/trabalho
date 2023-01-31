@@ -5,19 +5,21 @@ import Exceptions.InvalidValue;
 import Interfaces.MapInterface;
 import Interfaces.NetworkADT;
 
-import java.time.Duration;
-
 /**
  *
  * @author Daniela Moreira 8210311
  * @author Orlando Pires 8210367
  */
 public class Map extends Network<String> implements MapInterface{
-    private static int contador;
-    private final NetworkADT network = new Network();
+    private static int contadorVertices;
+    private final NetworkADT<Local> network = new Network();
 
-    public int getContador(){
-        return contador;
+    public Map(){
+        this.contadorVertices = 0;
+    }
+
+    public int getContadorVertices(){
+        return contadorVertices;
     }
 
     /**
@@ -27,36 +29,15 @@ public class Map extends Network<String> implements MapInterface{
     @Override
     public void addPortal(Portal portal) {
         network.addVertex(portal);
+        contadorVertices++;
     }
 
-     /**
-      * Falta Testar
-      * Temos que deixar o registo mais recente de cada jogador
-      * @param connector
-      */
     @Override
-    public void removerRegistosConnector(Connector connector) {
-        Node<ConnectorHistorico> current = connector.getPlayers().getFront();
-        LinkedList<ConnectorHistorico> lista = new LinkedList<>();
-        do{
-            if(current != null){
-                if(lista == null){
-                    lista.add((ConnectorHistorico) current.getElement());
-                }else{
-                    for(int i = 0; i < lista.size(); i++){
-                        if(lista.get(i) == current.getElement()){
-                            if(lista.get(i).getData().isBefore(current.getElement().getData())){
-                                lista.add((ConnectorHistorico) current.getElement());
-                                lista.remove(i);
-                            }
-                        }
-                    }
-                }
-            }
-            current = current.getNext();
-        }while(current != null);
-        connector.setPlayers(lista);
+    public void addConnector(Connector connector) {
+        network.addVertex(connector);
+        contadorVertices++;
     }
+
     /**
      *  Editar a localização de um portal
      *  1-Verifica se a latitude e longitude estão dentro dos limites, caso não estjam lança uma exceção
@@ -105,5 +86,42 @@ public class Map extends Network<String> implements MapInterface{
     @Override
     public void removePortal(Portal portal) {
         network.removeVertex(portal);
+    }
+
+    @Override
+    public void removeConnector(Connector connector) {
+        network.removeVertex(connector);
+    }
+
+    /**
+     *
+     * @param connector
+     * @param energia
+     * @throws InvalidValue
+     */
+    @Override
+    public void editConnector(Connector connector, double energia) throws InvalidValue{
+        if(energia >= 0)
+            connector.setEnergiaAtual(energia);
+        else
+            throw new InvalidValue("Energia não pode ser negativa");
+    }
+
+    /**
+     * @param connector
+     * @param latitude
+     * @param longitude
+     * @throws InvalidValue
+     */
+    @Override
+    public void editConnector(Connector connector, double latitude, double longitude) throws InvalidValue{
+        if(latitude < -90 || latitude > 90)
+            throw new InvalidValue("Latitude fora dos limites");
+        else
+            connector.setLatitude(latitude);
+        if(longitude < -180 || longitude > 180)
+            throw new InvalidValue("Longitude fora dos limites");
+        else
+            connector.setLongitude(longitude);
     }
 }

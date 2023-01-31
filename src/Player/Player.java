@@ -13,7 +13,7 @@ public class Player {
     private double expParaProximoNivel;
     private final int X = 4;
     private final int Y = 2;
-    private double energiaCapacidade = nivel + 49;
+    private double energiaCapacidade;
 
     public Player(String name, Equipas equipa) {
         this.energia = 0.0;
@@ -22,6 +22,7 @@ public class Player {
         this.equipa = equipa;
         this.experiencia = 0.0;
         this.expParaProximoNivel = 100;
+        this.energiaCapacidade = nivel + 49;
     }
 
     public int getIdLocalAtual() {
@@ -86,5 +87,9 @@ public class Player {
 
             setExpParaProximoNivel(tempExp);
         }
+    }
+
+    public double getEnergiaCapacidade() {
+        return energiaCapacidade;
     }
 }

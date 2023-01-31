@@ -1,7 +1,6 @@
 package Player;
 
 import ClassImplementation.LinkedList;
-import ClassImplementation.Network;
 import ClassImplementation.Node;
 
 import java.time.Duration;
@@ -29,7 +28,7 @@ public class AcaoPlayer {
     public LinkedList<Integer> proximaLocalizacao(Map map, Player jogador){
         LinkedList<Integer> resultados = new LinkedList<>();
 
-        for(int i = 0; i < map.getContador(); i++) {
+        for(int i = 0; i < map.getContadorVertices(); i++) {
             if (map.hasEdge(jogador.getIdLocalAtual(), i)) {
                 resultados.add(i);
             }
@@ -63,7 +62,8 @@ public class AcaoPlayer {
             do {
                 if (current.getElement().getPlayer() == jogador) {
                     if (Duration.between(LocalTime.now(), connector.getPlayers().getFront().getElement().getData()).toMinutes() >= connector.getIntervaloTempo()) {
-                        jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());
+                        jogador.setEnergia(jogador.getEnergia() + connector.getEnergiaAtual());
+                        connector.getPlayers().getFront().getElement().setData(LocalTime.now());
                     }
                 }
                 current = current.getNext();
@@ -75,7 +75,7 @@ public class AcaoPlayer {
                 connector.getPlayers().add(historico);
 
                 if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {
-                    jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());
+                    jogador.setEnergia(jogador.getEnergia() + connector.getEnergiaAtual());
                 }
             }
         }else{
@@ -83,7 +83,7 @@ public class AcaoPlayer {
             connector.getPlayers().add(historico);
 
             if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {
-                jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());
+                jogador.setEnergia(jogador.getEnergia() + connector.getEnergiaAtual());
             }
         }
     }
