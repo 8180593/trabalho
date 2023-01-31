@@ -3,9 +3,10 @@ package Player;
 import ClassImplementation.LinkedList;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class Json {
     public void crirJsonPortalHistorico(LinkedList<ConnectorHistorico> connectors){
@@ -56,9 +57,9 @@ public class Json {
         }
     }
 
-    public void importarJson() throws FileNotFoundException {
+    public void importarJson(String nomeFicheiro) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("data.json"));
+        Object obj = parser.parse(new FileReader(nomeFicheiro));
         JSONObject jsonObject = (JSONObject) obj;
         String id = (String) jsonObject.get("id");
     }
