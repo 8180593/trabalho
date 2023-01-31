@@ -1,10 +1,6 @@
 package ClassImplementation;
 
-import Exceptions.ConcurrentModificationException;
-import Exceptions.EmptyCollectionException;
-import Interfaces.IteratorADT;
 import Interfaces.ListADT;
-import Others.DoubleIterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -138,6 +134,9 @@ public class DoubleLinkedList<T> implements ListADT<T>,Iterable<T> {
 
         return result + "}";
     }
+    public DoubleNode<T> getHead() {
+        return this.head;
+    }
 
     private class MyIterator<T> implements Iterator<T> {
         private int current = 0;
@@ -172,9 +171,5 @@ public class DoubleLinkedList<T> implements ListADT<T>,Iterable<T> {
             throw new UnsupportedOperationException();
 
         }
-
-
-
-
     }
 }

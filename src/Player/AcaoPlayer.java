@@ -62,7 +62,7 @@ public class AcaoPlayer {
         if(current != null) {
             do {
                 if (current.getElement().getPlayer() == jogador) {
-                    if (Duration.between(LocalTime.now(), connector.getPlayers().first().getData()).toMinutes() >= connector.getIntervaloTempo()) {
+                    if (Duration.between(LocalTime.now(), connector.getPlayers().getFront().getElement().getData()).toMinutes() >= connector.getIntervaloTempo()) {
                         jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());
                     }
                 }
@@ -72,7 +72,7 @@ public class AcaoPlayer {
 
             if(i == connector.getPlayers().size()){
                 ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
-                connector.getPlayers().enqueue(historico);
+                connector.getPlayers().add(historico);
 
                 if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {
                     jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());
@@ -80,7 +80,7 @@ public class AcaoPlayer {
             }
         }else{
             ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
-            connector.getPlayers().enqueue(historico);
+            connector.getPlayers().add(historico);
 
             if (Duration.between(LocalTime.now(), historico.getData()).toMinutes() >= connector.getIntervaloTempo()) {
                 jogador.setEnergia(jogador.getEnergia() + connector.getEnergia());

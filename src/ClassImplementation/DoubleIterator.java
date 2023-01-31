@@ -1,6 +1,6 @@
-package Others;
+package ClassImplementation;
 
-import ClassesImplementation.DoubleNode;
+import ClassImplementation.DoubleNode;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
