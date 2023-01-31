@@ -3,7 +3,8 @@ package Player;
  * @author 8210311 Daniela Moreira
  * @author 8210367 Orlando Pires
  */
-import ClassImplementation.LinkedQueue;
+import ClassImplementation.DoubleLinkedList;
+import ClassImplementation.LinkedList;
 
 public class Connector {
     private final int vertice;
@@ -12,7 +13,7 @@ public class Connector {
     private double latitude;
     private double energia;
     private long intervaloTempo;
-    private LinkedQueue<ConnectorHistorico> players;
+    private LinkedList<ConnectorHistorico> players;
 
     public Connector(String id, double longitude, double latitude, double energia, long intervaloTempo, int vertice) {
         this.id = id;
@@ -20,7 +21,7 @@ public class Connector {
         this.latitude = latitude;
         this.energia = energia;
         this.intervaloTempo = intervaloTempo;
-        this.players = new LinkedQueue<>();
+        this.players = new LinkedList<>();
         this.vertice = vertice;
     }
 
@@ -67,11 +68,11 @@ public class Connector {
         this.intervaloTempo = intervaloTempo;
     }
 
-    public LinkedQueue<ConnectorHistorico> getPlayers() {
+    public LinkedList<ConnectorHistorico> getPlayers() {
         return this.players;
     }
 
-    public void setPlayers(LinkedQueue<ConnectorHistorico> player) {
+    public void setPlayers(LinkedList<ConnectorHistorico> player) {
         players = player;
     }
 }

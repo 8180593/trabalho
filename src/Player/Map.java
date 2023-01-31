@@ -1,9 +1,11 @@
 package Player;
 
-import ClassImplementation.Network;
+import ClassImplementation.*;
 import Exceptions.InvalidValue;
 import Interfaces.MapInterface;
 import Interfaces.NetworkADT;
+
+import java.time.Duration;
 
 /**
  *
@@ -28,12 +30,32 @@ public class Map extends Network<String> implements MapInterface{
     }
 
      /**
-     * Temos que deixar o registo mais recente de cada jogador
-     * @param connector
-     */
+      * Falta Testar
+      * Temos que deixar o registo mais recente de cada jogador
+      * @param connector
+      */
     @Override
     public void removerRegistosConnector(Connector connector) {
-
+        Node<ConnectorHistorico> current = connector.getPlayers().getFront();
+        LinkedList<ConnectorHistorico> lista = new LinkedList<>();
+        do{
+            if(current != null){
+                if(lista == null){
+                    lista.add((ConnectorHistorico) current.getElement());
+                }else{
+                    for(int i = 0; i < lista.size(); i++){
+                        if(lista.get(i) == current.getElement()){
+                            if(lista.get(i).getData().isBefore(current.getElement().getData())){
+                                lista.add((ConnectorHistorico) current.getElement());
+                                lista.remove(i);
+                            }
+                        }
+                    }
+                }
+            }
+            current = current.getNext();
+        }while(current != null);
+        connector.setPlayers(lista);
     }
     /**
      *  Editar a localização de um portal

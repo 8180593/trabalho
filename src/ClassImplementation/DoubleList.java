@@ -4,8 +4,6 @@ import ClassImplementation.DoubleNode;
 import Exceptions.ElementNotFoundException;
 import Exceptions.EmptyCollectionException;
 import Interfaces.ListADT;
-import Others.DoubleIterator;
-
 import java.util.Iterator;
 
 public class DoubleList<T> implements ListADT<T>{
