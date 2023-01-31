@@ -22,14 +22,14 @@ public class Portal {
      * @param id
      * @param latitude
      * @param longitude
-     * @param energiaAtual
+     * @param energiaTotal
      * @param estado
      */
-    public Portal(String id, double latitude, double longitude, double energiaAtual, Equipas estado, int vertice) {
+    public Portal(String id, double latitude, double longitude, double energiaTotal, Equipas estado, int vertice) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.energiaAtual = energiaAtual;
+        this.energiaTotal = energiaTotal;
         this.estado = estado;
         this.registos = new LinkedStack<Registos>();
         this.vertice = vertice;

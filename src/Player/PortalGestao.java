@@ -27,7 +27,9 @@ public class PortalGestao {
      * @param jogador jogador a realizar o ataque
      */
     public void destruirPortal(Portal portal, double energiaRetirada, Player jogador) {
-        if(energiaRetirada >= portal.getEnergiaAtual() && energiaRetirada < portal.getEnergiaAtual()*1.25){
+        double tempEnergiaSobra = energiaRetirada - portal.getEnergiaAtual();
+
+        if(tempEnergiaSobra >= 0 && tempEnergiaSobra < portal.getEnergiaTotal() * 0.25){
             portal.setEstado(null);
             jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
 
@@ -39,10 +41,8 @@ public class PortalGestao {
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
             portal.getRegistos().push(registo);
 
-        }else if(energiaRetirada >= portal.getEnergiaAtual() * 1.25){
-            double energiaSobra = energiaRetirada - portal.getEnergiaAtual();
-
-            determinarEstadoConquistado(portal, energiaSobra, jogador);
+        }else if(tempEnergiaSobra >= 0 && tempEnergiaSobra > portal.getEnergiaTotal() * 0.25){
+            determinarEstadoConquistado(portal, tempEnergiaSobra, jogador);
             jogador.setEnergia(jogador.getEnergia() - energiaRetirada);
 
             jogador.setExperiencia(jogador.getExperiencia() + energiaRetirada + BONUS_CONQUISTAR);
@@ -74,13 +74,31 @@ public class PortalGestao {
         if(energiaDoada > jogador.getEnergia()) {
             throw new InvalidValue("Não tem energia suficiente para fortalecer o portal");
         }
-        portal.setEnergiaAtual(portal.getEnergiaAtual() + energiaDoada);
+        if(portal.getEnergiaAtual() == portal.getEnergiaTotal()) {
+            throw new InvalidValue("Este portal já se encontra com a capacidade máxima.");
+        }
 
-        jogador.setExperiencia(jogador.getExperiencia() + energiaDoada);
-        jogador.mudarProximoNivel();
+        if(portal.getEnergiaAtual() + energiaDoada > portal.getEnergiaTotal()){
+            double tempEnergiaSobra = portal.getEnergiaTotal() - portal.getEnergiaAtual() - energiaDoada;
+            portal.setEnergiaAtual(portal.getEnergiaTotal());
 
-        Registos registo = new Registos(jogador, Acao.FORTALECEU, energiaDoada);
-        portal.getRegistos().push(registo);
+            jogador.setEnergia(jogador.getEnergia() - (energiaDoada-tempEnergiaSobra));
+            jogador.setExperiencia(jogador.getExperiencia() + (energiaDoada-tempEnergiaSobra));
+            jogador.mudarProximoNivel();
+
+            Registos registo = new Registos(jogador, Acao.FORTALECEU, (energiaDoada-tempEnergiaSobra));
+            portal.getRegistos().push(registo);
+
+        } else {
+            portal.setEnergiaAtual(portal.getEnergiaAtual() + energiaDoada);
+
+            jogador.setEnergia(jogador.getEnergia() - energiaDoada);
+            jogador.setExperiencia(jogador.getExperiencia() + energiaDoada);
+            jogador.mudarProximoNivel();
+
+            Registos registo = new Registos(jogador, Acao.FORTALECEU, energiaDoada);
+            portal.getRegistos().push(registo);
+        }
     }
 
     /**
