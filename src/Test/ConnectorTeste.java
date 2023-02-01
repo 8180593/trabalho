@@ -1,7 +1,6 @@
 package Test;
 
 import ClassImplementation.LinkedList;
-import ClassImplementation.LinkedQueue;
 import Player.Connector;
 import Player.ConnectorHistorico;
 import Player.Equipas;
@@ -21,7 +20,7 @@ public class ConnectorTeste {
      */
     @Test
     void connectorTeste() {
-        Connector connector = new Connector("1", 1, 1, 1, 1,1);
+        Connector connector = new Connector("1", 1, 1, 1,10);
         Player jogador = new Player("João", Equipas.Sparks);
         ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
         LinkedList<ConnectorHistorico> historicoJogador = new LinkedList<>();

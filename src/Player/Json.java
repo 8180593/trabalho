@@ -62,5 +62,9 @@ public class Json {
         Object obj = parser.parse(new FileReader(nomeFicheiro));
         JSONObject jsonObject = (JSONObject) obj;
         String id = (String) jsonObject.get("id");
+        String type = (String) jsonObject.get("type");
+        if(type == "Portal"){
+            //Portal portal = new Portal((String) jsonObject.get("id"), (double) jsonObject.get("latitude"), (double) jsonObject.get("longitude"), (double) jsonObject.get("energia"), (double) jsonObject.get("energiaMax"));
+        }
     }
 }

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class AcaoJogadorTeste {
     AcaoPlayer acaoPlayer = new AcaoPlayer();
-    Connector connector = new Connector("1", 1,1,1);
+    Connector connector = new Connector("1", 1,1,1,10);
     Player jogador = new Player("Daniela", Equipas.Giants);
     Map mapa = new Map();
 

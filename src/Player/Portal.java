@@ -21,11 +21,11 @@ public class Portal extends Local{
     }
 
     public LinkedStack<Registos> getRegistos() {
-        return registos;
+        return this.registos;
     }
 
     public double getEnergiaMaxima() {
-        return energiaMaxima;
+        return this.energiaMaxima;
     }
 
     public void setEnergiaMaxima(double energiaMaxima) {
@@ -41,7 +41,7 @@ public class Portal extends Local{
     }
 
     public String getNomeJogador() {
-        return nomeJogador;
+        return this.nomeJogador;
     }
 
     public void setNomeJogador(String nomeJogador) {
