@@ -24,10 +24,18 @@ public class PortalGestaoTeste {
     void destruirPortaltestEstadoNull(){
         Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Sparks);
+
         portal.setEnergiaAtual(5);
-        acaoJogador.carregarEnergia(connector, jogador);
+        jogador.setEnergia(10.0);
+
         portalGestao.destruirPortal(portal, 6, jogador);
+
+        assertEquals(portal.getEstado(), null);
+        assertEquals(jogador.getEnergia(), 5);
         assertEquals(jogador.getExperiencia(), 105);
+        assertEquals(jogador.getNivel(), 4);
+        assertEquals(portal.getEnergiaAtual(), 0);
+        assertEquals(portal.getNomeJogador(), null);
     }
 
     /**
@@ -35,11 +43,20 @@ public class PortalGestaoTeste {
      */
     @Test
     void destruirPortaltestEstadoSparks(){
-        Portal portal = new Portal("0", 1,1,Equipas.Giants,1);
+        Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Sparks);
-        acaoJogador.carregarEnergia(connector, jogador);
-        portalGestao.destruirPortal(portal, 12.5, jogador);
-        assertEquals(Equipas.Sparks, portal.getEstado());
+
+        portal.setEnergiaAtual(5);
+        jogador.setEnergia(10.0);
+
+        portalGestao.destruirPortal(portal, 9, jogador);
+
+        assertEquals(portal.getEstado(), Equipas.Sparks);
+        assertEquals(jogador.getEnergia(), 1);
+        assertEquals(jogador.getExperiencia(), 259);
+        assertEquals(jogador.getNivel(), 5);
+        assertEquals(portal.getEnergiaAtual(), 4);
+        assertEquals(portal.getNomeJogador(), "Duarte");
     }
 
     /**
@@ -47,12 +64,20 @@ public class PortalGestaoTeste {
      */
     @Test
     void destruirPortaltestEnfraquecer(){
-        Portal portal = new Portal("0", 1,1, Equipas.Giants,10);
+        Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Sparks);
-        Connector connectorFraco = new Connector("1", 1.0,1.0,10,10);
-        acaoJogador.carregarEnergia(connectorFraco, jogador);
-        portalGestao.destruirPortal(portal, 2, jogador);
-        assertEquals(8, portal.getEnergiaAtual());
+
+        portal.setEnergiaAtual(5);
+        jogador.setEnergia(10.0);
+
+        portalGestao.destruirPortal(portal, 1, jogador);
+
+        assertEquals(portal.getEstado(), Equipas.Giants);
+        assertEquals(jogador.getEnergia(), 9);
+        assertEquals(jogador.getExperiencia(), 1);
+        assertEquals(jogador.getNivel(), 1);
+        assertEquals(portal.getEnergiaAtual(), 4);
+        assertEquals(portal.getNomeJogador(), null);
     }
 
     /**
@@ -61,13 +86,22 @@ public class PortalGestaoTeste {
      */
     @Test
     void fortalecerPortalTest() throws InvalidValue {
-        Portal portal = new Portal("0", 1,1, Equipas.Giants,10);
+        Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Giants);
-        Connector connectorFraco = new Connector("1", 1,1,10,100);
-        acaoJogador.carregarEnergia(connectorFraco, jogador);
-        portalGestao.fortalecerPortal(portal,2, jogador);
-        assertEquals(12, portal.getEnergiaAtual());
+
+        portal.setEnergiaAtual(5);
+        jogador.setEnergia(10.0);
+
+        portalGestao.fortalecerPortal(portal, 1, jogador);
+
+        assertEquals(portal.getEstado(), Equipas.Giants);
+        assertEquals(jogador.getEnergia(), 9);
+        assertEquals(jogador.getExperiencia(), 1);
+        assertEquals(jogador.getNivel(), 1);
+        assertEquals(portal.getEnergiaAtual(), 6);
+        assertEquals(portal.getNomeJogador(), null);
     }
+
     /**
      * Teste de fortalecimento de um portal com energia superior a do jogador
      * @throws InvalidValue

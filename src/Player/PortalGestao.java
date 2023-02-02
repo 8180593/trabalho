@@ -39,7 +39,7 @@ public class PortalGestao {
             portal.setEnergiaAtual(0);
             portal.setNomeJogador(null);
 
-            Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada);
+            Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada - tempEnergiaSobra);
             portal.getRegistos().push(registo);
 
         }else if(tempEnergiaSobra >= 0 && tempEnergiaSobra > portal.getEnergiaMaxima() * 0.25){

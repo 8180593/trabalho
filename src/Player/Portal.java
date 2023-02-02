@@ -9,7 +9,7 @@ import ClassImplementation.LinkedStack;
 public class Portal extends Local{
     private Equipas estado;
     private double energiaMaxima;//energia maxima
-    private final LinkedStack<Registos> registos = null;
+    private final LinkedStack<Registos> registos;
     private String nomeJogador;
 
 
@@ -18,6 +18,7 @@ public class Portal extends Local{
         this.estado = estado;
         this.energiaMaxima = energiaMaxima;
         this.nomeJogador = null;
+        this.registos = new LinkedStack<Registos>();
     }
 
     public LinkedStack<Registos> getRegistos() {

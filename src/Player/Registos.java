@@ -5,9 +5,9 @@ package Player;
  * @author 8210367 Orlando Pires
  */
 public class Registos {
-    private final Player jogador;
-    private final Acao acao;
-    private final double energia;
+    private Player jogador;
+    private Acao acao;
+    private double energia;
 
     /**
      *
