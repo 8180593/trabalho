@@ -6,16 +6,18 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Json {
-    public void crirJsonPortalHistorico(LinkedList<ConnectorHistorico> connectors){
+    public void crirJsonConnectorHistorico(LinkedList<ConnectorHistorico> connectors){
         JSONObject obj = new JSONObject();
         int i;
         for(i = 0; i < connectors.size(); i++){
             obj.put("Name", connectors.get(i).getPlayer().getName());
             obj.put("Data", connectors.get(i).getData());
         }
+        writeJSONToFile(obj, "Connector.json");
     }
 
     public void criarJsonPlayer(LinkedList<Player> players){
@@ -29,6 +31,7 @@ public class Json {
             obj.put("MaxEnergy", players.get(i).getEnergiaCapacidade());
             obj.put("CurrentEnergy", players.get(i).getEnergia());
         }
+        writeJSONToFile(obj, "Players.json");
     }
 
     public void criarJsonConnector(LinkedList<Connector> connectors){
@@ -41,6 +44,7 @@ public class Json {
             obj.put("Longitude", connectors.get(i).getLongitude());
             obj.put("IntervaloTempo", connectors.get(i).getIntervaloTempo());
         }
+        writeJSONToFile(obj, "Connectors.json");
     }
 
     public void criarJsonPortal(LinkedList<Portal> portals){
@@ -55,8 +59,19 @@ public class Json {
             obj.put("EnergiaMax", portals.get(i).getEnergiaMaxima());
             obj.put("Ownership", portals.get(i).getNomeJogador());
         }
+        writeJSONToFile(obj, "Portals.json");
     }
 
+    public void writeJSONToFile(JSONObject obj, String fileName) {
+        try(FileWriter file = new FileWriter(fileName)) {
+            file.write(obj.toJSONString());
+            file.flush();
+            file.close();
+            System.out.println("Copiado com sucesso para o ficheiro JSON...");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void importarJson(String nomeFicheiro) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(new FileReader(nomeFicheiro));
