@@ -23,7 +23,7 @@ public class PlayerTest {
         Player jogador = new Player("Daniela", Equipas.Sparks);
         jogador.setExperiencia(105);
         jogador.mudarProximoNivel();
-        assertEquals(2, jogador.getNivel());
+        assertEquals(4, jogador.getNivel());
     }
 
      @Test

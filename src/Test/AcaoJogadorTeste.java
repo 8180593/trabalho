@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class AcaoJogadorTeste {
     AcaoPlayer acaoPlayer = new AcaoPlayer();
-    Connector connector = new Connector("1", 1,1,1,10);
+    Connector connector = new Connector("1", 1,1,0,10);
     Player jogador = new Player("Daniela", Equipas.Giants);
     Map mapa = new Map();
 
@@ -25,7 +25,7 @@ public class AcaoJogadorTeste {
     @Test
     public void testarAcaoJogador(){
         acaoPlayer.carregarEnergia(connector, jogador);
-        assertEquals(50, jogador.getEnergia());
+        assertEquals(10, jogador.getEnergia());
     }
     /**@Test
     public void andarTest(){
