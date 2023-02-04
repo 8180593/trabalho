@@ -17,6 +17,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
     }
 
+
     public String toString() {
         if (numVertices == 0) {
             return "Graph is empty";

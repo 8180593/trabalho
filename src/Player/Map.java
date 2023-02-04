@@ -12,10 +12,21 @@ import Interfaces.NetworkADT;
  */
 public class Map extends Network<String> implements MapInterface{
     private static int contadorVertices;
-    private final NetworkADT<Local> network = new Network();
+    private Network<Local> network;
+    private LinkedList<Local> locais;
 
     public Map(){
         this.contadorVertices = 0;
+        this.network = new Network<Local>();
+        this.locais = new LinkedList<Local>();
+    }
+
+    public LinkedList<Local> getLocais() {
+        return locais;
+    }
+
+    public Network<Local> getNetwork() {
+        return network;
     }
 
     public int getContadorVertices(){
@@ -29,12 +40,14 @@ public class Map extends Network<String> implements MapInterface{
     @Override
     public void addPortal(Portal portal) {
         network.addVertex(portal);
+        locais.add(portal);
         contadorVertices++;
     }
 
     @Override
     public void addConnector(Connector connector) {
         network.addVertex(connector);
+        locais.add(connector);
         contadorVertices++;
     }
 
