@@ -1,6 +1,9 @@
 package Player;
 
+import ClassImplementation.ArrayUnorderedList;
 import ClassImplementation.LinkedList;
+import Interfaces.UnorderedListADT;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -73,13 +76,47 @@ public class Json {
         }
     }
     public void importarJson(String nomeFicheiro) throws IOException, ParseException {
+        UnorderedListADT<Local> locais = new ArrayUnorderedList<>();
+        UnorderedListADT<Player> jogadores = new ArrayUnorderedList<>();
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader(nomeFicheiro));
+        Object obj = parser.parse(new FileReader("map.json"));
+
         JSONObject jsonObject = (JSONObject) obj;
-        String id = (String) jsonObject.get("id");
-        String type = (String) jsonObject.get("type");
-        if(type == "Portal"){
-            //Portal portal = new Portal((String) jsonObject.get("id"), (double) jsonObject.get("latitude"), (double) jsonObject.get("longitude"), (double) jsonObject.get("energia"), (double) jsonObject.get("energiaMax"));
+        JSONArray locals = (JSONArray) jsonObject.get("locals");
+        JSONArray players = (JSONArray) jsonObject.get("players");
+        JSONArray routes = (JSONArray) jsonObject.get("routes");
+
+
+        for (Object local : locals) {
+            Local local1 = new Local();
+            JSONObject localJson = (JSONObject) local;
+            Long id = (Long) localJson.get("id");
+
+            JSONObject coordinates = (JSONObject) localJson.get("coordinates");
+            Double latitude = (Double) coordinates.get("latitude");
+            Double longitude = (Double) coordinates.get("longitude");
+
+            JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
+            Long energy = (Long) gameSettings.get("energy");
+            Long maxEnergy = (Long) gameSettings.get("maxEnergy");
+
+            local1.setLatitude(latitude);
+            local1.setLongitude(longitude);
+            local1.setId(id);
+            local1.setEnergiaAtual(energy);
+            System.out.println(local1.toString());
+            locais.addToRear(local1);//adiciona o local ao arraylist
+        }
+/*
+        for (Object player : players) {
+            JSONObject playerJson = (JSONObject) player;
+            String name = (String) playerJson.get("name");
+            String team = (String) playerJson.get("team");
+        }
+*/
+       //sout all the locals
+        for (int i = 0; i < locais.size(); i++) {
+            System.out.println(locais);
         }
     }
 }

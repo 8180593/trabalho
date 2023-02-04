@@ -14,6 +14,9 @@ public class Local {
         this.energiaAtual = 0;
     }
 
+    public Local(){
+
+    }
     public int getVertice() {
         return vertice;
     }
@@ -22,12 +25,12 @@ public class Local {
         this.vertice = vertice;
     }
 
-    public String getId() {
-        return id;
+    public Long getId() {
+        return Long.valueOf(id);
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(Long id) {
+        this.id = String.valueOf(id);
     }
 
     public double getLatitude() {
@@ -52,5 +55,9 @@ public class Local {
 
     public void setEnergiaAtual(double energiaAtual) {
         this.energiaAtual = energiaAtual;
+    }
+
+    public String toString(){
+        return "Id: " + id + " Latitude: " + latitude + " Longitude: " + longitude + " Energia: " + energiaAtual;
     }
 }

@@ -1,13 +1,11 @@
 package Test;
 
 import ClassImplementation.LinkedList;
-import Player.ConnectorHistorico;
-import Player.Equipas;
-import Player.Json;
-import Player.Player;
-import Player.Connector;
+import Player.*;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.time.LocalTime;
 
 public class JsonTest {
@@ -37,5 +35,11 @@ public class JsonTest {
         listaConnectores.add(connector);
         Json json = new Json();
         json.criarJsonConnector(listaConnectores);
+    }
+
+    @Test
+    void testarCriarJsonPortal() throws IOException, ParseException {
+       Json a = new Json();
+       a.importarJson("Map.json");
     }
 }
