@@ -10,14 +10,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Json {
-    public void crirJsonConnectorHistorico(LinkedList<ConnectorHistorico> connectors){
+    public void criarJsonConnectorHistorico(LinkedList<ConnectorHistorico> connectors){
         JSONObject obj = new JSONObject();
         int i;
         for(i = 0; i < connectors.size(); i++){
             obj.put("Name", connectors.get(i).getPlayer().getName());
             obj.put("Data", connectors.get(i).getData());
         }
-        writeJSONToFile(obj, "Connector.json");
+        writeJSONToFile(obj, "ConnectorHistorico.json");
     }
 
     public void criarJsonPlayer(LinkedList<Player> players){
