@@ -54,7 +54,7 @@ public class MapTeste {
      */
     @Test
     void edtiProtalTestPass() throws InvalidValue {
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
+        Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         mapa.editPortal(portal, 2, 1);
         assertEquals(2, portal.getLatitude());
     }
@@ -65,7 +65,7 @@ public class MapTeste {
      */
     @Test
     void EditPortalTestFailLatitudeInferior() throws InvalidValue {
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
+        Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         assertThrows("Latitude fora dos limites", InvalidValue.class, () -> {
             mapa.editPortal(portal, -91, 1);
         });
@@ -77,7 +77,7 @@ public class MapTeste {
      */
     @Test
     void EditPortalTestFailLatitudeSuperior() throws InvalidValue {
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
+        Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         assertThrows("Latitude fora dos limites", InvalidValue.class, () -> {
             mapa.editPortal(portal, 91, 1);
         });
@@ -89,7 +89,7 @@ public class MapTeste {
      */
     @Test
     void EditPortalTestFailLongitudeInferior() throws InvalidValue {
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
+        Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         assertThrows("Longitude fora dos limites", InvalidValue.class, () -> {
             mapa.editPortal(portal, 1, -181);
         });
@@ -101,7 +101,7 @@ public class MapTeste {
      */
     @Test
     void EditPortalTestFailLongitudeSuperior() throws InvalidValue {
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
+        Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         assertThrows("Longitude fora dos limites", InvalidValue.class, () -> {
             mapa.editPortal(portal, 1, 181);
         });
@@ -113,7 +113,7 @@ public class MapTeste {
      */
     @Test
     void EditPortalEnergyTest() throws InvalidValue {
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
+        Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         mapa.editPortal(portal, 2);
         assertEquals(2, portal.getEnergiaAtual());
     }
@@ -124,7 +124,7 @@ public class MapTeste {
      */
     @Test
     void EditPortalEnergyTestFail() throws InvalidValue {
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
+        Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         assertThrows("Energia fora dos limites", InvalidValue.class, () -> {
             mapa.editPortal(portal, -1);
         });

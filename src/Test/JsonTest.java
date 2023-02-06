@@ -31,15 +31,15 @@ public class JsonTest {
     @Test
     void testarCriarJsonConnector() {
         LinkedList<Connector> listaConnectores = new LinkedList<>();
-        Connector connector = new Connector("1", 1, 1, 1, 10);
+        Connector connector = new Connector(1l, 1, 1, 1, 10);
         listaConnectores.add(connector);
         Json json = new Json();
         json.criarJsonConnector(listaConnectores);
     }
 
     @Test
-    void testarCriarJsonPortal() throws IOException, ParseException {
-       Json a = new Json();
-       a.importarJson("Map.json");
+    void testarimportalJson() throws IOException, ParseException {
+        Json json = new Json();
+        json.importarJson("Map.json");
     }
 }

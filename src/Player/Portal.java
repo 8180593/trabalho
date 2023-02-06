@@ -13,7 +13,7 @@ public class Portal extends Local{
     private String nomeJogador;
 
 
-    public Portal(String id, double latitude, double longitude, Equipas estado, double energiaMaxima) {
+    public Portal(long id, double latitude, double longitude, Equipas estado, double energiaMaxima) {
         super(id, latitude, longitude);
         this.estado = estado;
         this.energiaMaxima = energiaMaxima;

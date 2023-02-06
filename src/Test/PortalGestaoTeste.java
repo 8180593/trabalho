@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class PortalGestaoTeste {
     PortalGestao portalGestao = new PortalGestao();
-    Connector connector = new Connector("1", 1,1,50, 10);
+    Connector connector = new Connector(1l, 1,1,50, 10);
     AcaoPlayer acaoJogador = new AcaoPlayer();
 
     /**
@@ -22,7 +22,7 @@ public class PortalGestaoTeste {
      */
     @Test
     void destruirPortaltestEstadoNull(){
-        Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
+        Portal portal = new Portal(0l, 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Sparks);
 
         portal.setEnergiaAtual(5);
@@ -43,7 +43,7 @@ public class PortalGestaoTeste {
      */
     @Test
     void destruirPortaltestEstadoSparks(){
-        Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
+        Portal portal = new Portal(0l, 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Sparks);
 
         portal.setEnergiaAtual(5);
@@ -64,7 +64,7 @@ public class PortalGestaoTeste {
      */
     @Test
     void destruirPortaltestEnfraquecer(){
-        Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
+        Portal portal = new Portal(0l, 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Sparks);
 
         portal.setEnergiaAtual(5);
@@ -86,7 +86,7 @@ public class PortalGestaoTeste {
      */
     @Test
     void fortalecerPortalTest() throws InvalidValue {
-        Portal portal = new Portal("0", 1,1, Equipas.Giants, 10);
+        Portal portal = new Portal(0l, 1,1, Equipas.Giants, 10);
         Player jogador = new Player("Duarte", Equipas.Giants);
 
         portal.setEnergiaAtual(5);
@@ -108,9 +108,9 @@ public class PortalGestaoTeste {
      */
     @Test
     void fortalecerPortalTestExcecao() throws InvalidValue {
-        Portal portal = new Portal("0", 1,1,Equipas.Giants,10);
+        Portal portal = new Portal(0l, 1,1,Equipas.Giants,10);
         Player jogador = new Player("Duarte", Equipas.Giants);
-        Connector connectorFraco = new Connector("1", 1,1,10,10);
+        Connector connectorFraco = new Connector(1l, 1,1,10,10);
         acaoJogador.carregarEnergia(connectorFraco, jogador);
         assertThrows("Não tem energia suficiente para fortalecer o portal", InvalidValue.class,()-> portalGestao.fortalecerPortal(portal,12, jogador));
     }

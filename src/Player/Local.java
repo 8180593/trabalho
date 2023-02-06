@@ -2,12 +2,12 @@ package Player;
 
 public class Local {
     private int vertice;
-    private String id;
+    private Long id;
     private double latitude;
     private double longitude;
     private double energiaAtual;
 
-    public Local(String id, double latitude, double longitude) {
+    public Local(Long id, double latitude, double longitude) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -30,7 +30,7 @@ public class Local {
     }
 
     public void setId(Long id) {
-        this.id = String.valueOf(id);
+        this.id = id;
     }
 
     public double getLatitude() {

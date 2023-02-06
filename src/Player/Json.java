@@ -1,8 +1,6 @@
 package Player;
 
-import ClassImplementation.ArrayUnorderedList;
 import ClassImplementation.LinkedList;
-import Interfaces.UnorderedListADT;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -76,10 +74,11 @@ public class Json {
         }
     }
     public void importarJson(String nomeFicheiro) throws IOException, ParseException {
-        UnorderedListADT<Local> locais = new ArrayUnorderedList<>();
-        UnorderedListADT<Player> jogadores = new ArrayUnorderedList<>();
+        LinkedList<Portal> portais = new LinkedList<>();
+        LinkedList<Connector> conectores = new LinkedList<>();
+        LinkedList<Player> jogadores = new LinkedList<>();
         JSONParser parser = new JSONParser();
-        Object obj = parser.parse(new FileReader("map.json"));
+        Object obj = parser.parse(new FileReader(nomeFicheiro));
 
         JSONObject jsonObject = (JSONObject) obj;
         JSONArray locals = (JSONArray) jsonObject.get("locals");
@@ -91,32 +90,48 @@ public class Json {
             Local local1 = new Local();
             JSONObject localJson = (JSONObject) local;
             Long id = (Long) localJson.get("id");
+            String type = (String) localJson.get("type");
+            if(type.equals("Connector")) {
+                JSONObject coordinates = (JSONObject) localJson.get("coordinates");
+                Double latitude = (Double) coordinates.get("latitude");
+                Double longitude = (Double) coordinates.get("longitude");
 
-            JSONObject coordinates = (JSONObject) localJson.get("coordinates");
-            Double latitude = (Double) coordinates.get("latitude");
-            Double longitude = (Double) coordinates.get("longitude");
+                JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
+                Long energy = (Long) gameSettings.get("energy");
+                Long maxEnergy = (Long) gameSettings.get("maxEnergy");
+                double intervaloTempo = (double) gameSettings.get("cooldown");
+                local1 = new Connector(id, latitude, longitude, energy, maxEnergy);
+                conectores.add((Connector) local1);
+            } else if(type.equals("Portal")){
+                JSONObject coordinates = (JSONObject) localJson.get("coordinates");
+                Double latitude = (Double) coordinates.get("latitude");
+                Double longitude = (Double) coordinates.get("longitude");
 
-            JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
-            Long energy = (Long) gameSettings.get("energy");
-            Long maxEnergy = (Long) gameSettings.get("maxEnergy");
-
-            local1.setLatitude(latitude);
-            local1.setLongitude(longitude);
-            local1.setId(id);
-            local1.setEnergiaAtual(energy);
-            System.out.println(local1.toString());
-            locais.addToRear(local1);//adiciona o local ao arraylist
+                JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
+                Long energy = (Long) gameSettings.get("energy");
+                Long maxEnergy = (Long) gameSettings.get("maxEnergy");
+                JSONObject ownership = (JSONObject) localJson.get("ownership");
+                String name = (String) ownership.get("player");
+                Equipas equipa = null;
+                for(int i = 0; i < jogadores.size(); i++){
+                    if(jogadores.get(i).getName().equals(name)){
+                        equipa = jogadores.get(i).getEquipa();
+                    }
+                }
+                local1 = new Portal(id, latitude, longitude, equipa, maxEnergy);
+                portais.add((Portal) local1);
+            }
         }
-/*
+
         for (Object player : players) {
             JSONObject playerJson = (JSONObject) player;
             String name = (String) playerJson.get("name");
-            String team = (String) playerJson.get("team");
-        }
-*/
-       //sout all the locals
-        for (int i = 0; i < locais.size(); i++) {
-            System.out.println(locais);
+            Equipas team = (Equipas) playerJson.get("team");
+            int level = (int) playerJson.get("level");
+            double experiencePoints = (double) playerJson.get("experiencePoints");
+            double energia = (double) playerJson.get("currentEnergy");
+            Player player1 = new Player(energia, name, level, experiencePoints, team);
+            jogadores.add(player1);
         }
     }
 }
