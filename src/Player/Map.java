@@ -38,14 +38,14 @@ public class Map extends Network<String> implements MapInterface{
      * @param portal novo portal a ser adicionado
      */
     @Override
-    public void addPortal(Portal portal) {
+    public void addLocal(Portal portal) {
         network.addVertex(portal);
         locais.add(portal);
         contadorVertices++;
     }
 
     @Override
-    public void addConnector(Connector connector) {
+    public void addLocal(Connector connector) {
         network.addVertex(connector);
         locais.add(connector);
         contadorVertices++;
@@ -60,7 +60,7 @@ public class Map extends Network<String> implements MapInterface{
      * @throws InvalidValue exceção retornada quando o valor e invalido
      */
     @Override
-    public void editPortal(Portal portal, double latitude, double longitude) throws InvalidValue {
+    public void editLocal(Portal portal, double latitude, double longitude) throws InvalidValue {
         if(latitude < -90 || latitude > 90)
             throw new InvalidValue("Latitude fora dos limites");
         else
@@ -76,7 +76,7 @@ public class Map extends Network<String> implements MapInterface{
      * @param energia nova energia do portal
      */
     @Override
-    public void editPortal(Portal portal, double energia) throws InvalidValue{
+    public void editLocal(Portal portal, double energia) throws InvalidValue{
         if(energia >= 0)
             portal.setEnergiaAtual(energia);
         else
@@ -88,7 +88,7 @@ public class Map extends Network<String> implements MapInterface{
      * @param estado novo estado do portal
      */
     @Override
-    public void editPortal(Portal portal, Equipas estado){
+    public void editLocal(Portal portal, Equipas estado){
         portal.setEstado(estado);
     }
 
@@ -97,12 +97,12 @@ public class Map extends Network<String> implements MapInterface{
      * @param portal portal a ser leminado
      */
     @Override
-    public void removePortal(Portal portal) {
+    public void removeLocal(Portal portal) {
         network.removeVertex(portal);
     }
 
     @Override
-    public void removeConnector(Connector connector) {
+    public void removeLocal(Connector connector) {
         network.removeVertex(connector);
     }
 
@@ -113,7 +113,7 @@ public class Map extends Network<String> implements MapInterface{
      * @throws InvalidValue
      */
     @Override
-    public void editConnector(Connector connector, double energia) throws InvalidValue{
+    public void editLocal(Connector connector, double energia) throws InvalidValue{
         if(energia >= 0)
             connector.setEnergiaAtual(energia);
         else
@@ -127,7 +127,7 @@ public class Map extends Network<String> implements MapInterface{
      * @throws InvalidValue
      */
     @Override
-    public void editConnector(Connector connector, double latitude, double longitude) throws InvalidValue{
+    public void editLocal(Connector connector, double latitude, double longitude) throws InvalidValue{
         if(latitude < -90 || latitude > 90)
             throw new InvalidValue("Latitude fora dos limites");
         else

@@ -1,6 +1,7 @@
 package GUI;
 
 import ClassImplementation.LinkedList;
+import Exceptions.InvalidValue;
 import Player.Player;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class AddPortalGUI implements ActionListener {
     private final LinkedList<Player> players = new LinkedList<>();
     private final JFrame frame = new JFrame("JFrame Example");
     private final JButton button = new JButton("Adicionar Portal");
-    private final JLabel label = new JLabel(" Adicionar Portal");
+    private final JLabel label = new JLabel("Adicionar Portal");
     private final JLabel iDportal = new JLabel("Digite o Id do Portal:");
     private final JTextField fieldIdProtal = new JTextField();
     private final JLabel LatitudePortal = new JLabel("Digite a Latitude do Portal:");
@@ -59,7 +60,7 @@ public class AddPortalGUI implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
         if (e.getSource() == button)
             System.out.println("Eu sou lindo!!");
     }

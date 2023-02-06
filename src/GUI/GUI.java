@@ -1,4 +1,8 @@
 package GUI;
+import Exceptions.InvalidValue;
+import Player.Map;
+
+import java.awt.event.ActionEvent;
 
 /**
  * @author Daniela Moreira 8210311
@@ -6,8 +10,10 @@ package GUI;
  */
 public class GUI{
 
-    public static void main(String[] args) {
-        new AddConnectorGUI();
+    public static void main(String[] args) throws InvalidValue {
+        Map mapa = new Map();
+        AddConnectorGUI connectorGUI = new AddConnectorGUI(mapa);
+
     }
 
 }
