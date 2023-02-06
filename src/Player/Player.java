@@ -25,6 +25,16 @@ public class Player {
         this.energiaCapacidade = nivel + 49;
     }
 
+    public Player(Double energia, String name, int nivel, double experiencia, Equipas equipa) {
+        this.energia = energia;
+        this.name = name;
+        this.nivel = nivel;
+        this.experiencia = experiencia;
+        this.equipa = equipa;
+        this.expParaProximoNivel = 100;
+        this.energiaCapacidade = nivel + 49;
+    }
+
     public int getIdLocalAtual() {
         return localAtual;
     }

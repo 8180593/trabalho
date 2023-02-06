@@ -10,7 +10,7 @@ public class Connector extends Local{
     private long intervaloTempo;
     private LinkedList<ConnectorHistorico> players;
 
-    public Connector(String id, double latitude, double longitude, long intervaloTempo, double energia) {
+    public Connector(Long id, double latitude, double longitude, long intervaloTempo, double energia) {
         super(id, latitude, longitude);
         this.intervaloTempo = intervaloTempo;
         this.players = new LinkedList<>();

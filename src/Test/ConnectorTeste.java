@@ -20,7 +20,7 @@ public class ConnectorTeste {
      */
     @Test
     void connectorTeste() {
-        Connector connector = new Connector("1", 1, 1, 1,10);
+        Connector connector = new Connector(1l, 1, 1, 1,10);
         Player jogador = new Player("João", Equipas.Sparks);
         ConnectorHistorico historico = new ConnectorHistorico(jogador, LocalTime.now());
         LinkedList<ConnectorHistorico> historicoJogador = new LinkedList<>();
