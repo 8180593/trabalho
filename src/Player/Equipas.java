@@ -4,5 +4,5 @@ package Player;
  * @author 8210367 Orlando Pires
  */
 public enum Equipas {
-    Sparks, Giants
+    Sparks, Giants, Neutro
 }

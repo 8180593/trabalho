@@ -103,6 +103,7 @@ public class Json {
                 local1 = new Connector(id, latitude, longitude, energy, maxEnergy);
                 conectores.add((Connector) local1);
             } else if(type.equals("Portal")){
+                String namePortal = (String) localJson.get("name");
                 JSONObject coordinates = (JSONObject) localJson.get("coordinates");
                 Double latitude = (Double) coordinates.get("latitude");
                 Double longitude = (Double) coordinates.get("longitude");
@@ -110,14 +111,22 @@ public class Json {
                 JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
                 Long energy = (Long) gameSettings.get("energy");
                 Long maxEnergy = (Long) gameSettings.get("maxEnergy");
+
                 JSONObject ownership = (JSONObject) localJson.get("ownership");
                 String name = (String) ownership.get("player");
+
                 Equipas equipa = null;
-                for(int i = 0; i < jogadores.size(); i++){
-                    if(jogadores.get(i).getName().equals(name)){
-                        equipa = jogadores.get(i).getEquipa();
+                if(name != null) {
+                    for (int i = 0; i < jogadores.size(); i++) {
+                        if (jogadores.get(i).getName().equals(name)) {
+                            equipa = jogadores.get(i).getEquipa();
+                        }
                     }
+                }else{
+                    equipa = Equipas.Neutro;
+                    name = "None";
                 }
+
                 local1 = new Portal(id, latitude, longitude, equipa, maxEnergy);
                 portais.add((Portal) local1);
             }
