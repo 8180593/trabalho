@@ -54,13 +54,8 @@ public class MapTeste {
      */
     @Test
     void edtiProtalTestPass() throws InvalidValue {
-<<<<<<< HEAD
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
-        mapa.editLocal(portal, 2, 1);
-=======
         Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
-        mapa.editPortal(portal, 2, 1);
->>>>>>> f5524ac95189a8929775918d9fda7efe71e757cd
+        mapa.editLocal(portal, 2, 1);
         assertEquals(2, portal.getLatitude());
     }
 
@@ -118,13 +113,8 @@ public class MapTeste {
      */
     @Test
     void EditPortalEnergyTest() throws InvalidValue {
-<<<<<<< HEAD
-        Portal portal =new Portal("1", 1,1, Equipas.Sparks, 1);
-        mapa.editLocal(portal, 2);
-=======
         Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
-        mapa.editPortal(portal, 2);
->>>>>>> f5524ac95189a8929775918d9fda7efe71e757cd
+        mapa.editLocal(portal, 2);
         assertEquals(2, portal.getEnergiaAtual());
     }
 

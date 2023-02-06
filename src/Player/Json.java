@@ -12,46 +12,53 @@ import java.io.IOException;
 
 public class Json {
     public void criarJsonConnectorHistorico(LinkedList<ConnectorHistorico> connectors){
-        JSONObject obj = new JSONObject();
+        JSONArray listas = new JSONArray();
         int i;
         for(i = 0; i < connectors.size(); i++){
+            JSONObject obj = new JSONObject();
             obj.put("Name", connectors.get(i).getPlayer().getName());
             obj.put("Data", connectors.get(i).getData());
+            listas.add(obj);
         }
-        writeJSONToFile(obj, "ConnectorHistorico.json");
+        writeJSONToFile(listas, "ConnectorHistorico.json");
     }
 
     public void criarJsonPlayer(LinkedList<Player> players){
-        JSONObject obj = new JSONObject();
+        JSONArray listas = new JSONArray();
         int i;
         for(i = 0; i < players.size(); i++){
+            JSONObject obj = new JSONObject();
             obj.put("Name", players.get(i).getName());
             obj.put("Team", players.get(i).getEquipa());
             obj.put("Level", players.get(i).getNivel());
             obj.put("ExperiencePoints", players.get(i).getExperiencia());
             obj.put("MaxEnergy", players.get(i).getEnergiaCapacidade());
             obj.put("CurrentEnergy", players.get(i).getEnergia());
+            listas.add(obj);
         }
-        writeJSONToFile(obj, "Players.json");
+        writeJSONToFile(listas, "Players.json");
     }
 
     public void criarJsonConnector(LinkedList<Connector> connectors){
-        JSONObject obj = new JSONObject();
+        JSONArray listas = new JSONArray();
         int i;
         for(i = 0; i < connectors.size(); i++){
+            JSONObject obj = new JSONObject();
             obj.put("Id", connectors.get(i).getId());
             obj.put("Type", "Connector");
             obj.put("Latitude", connectors.get(i).getLatitude());
             obj.put("Longitude", connectors.get(i).getLongitude());
             obj.put("IntervaloTempo", connectors.get(i).getIntervaloTempo());
+            listas.add(obj);
         }
-        writeJSONToFile(obj, "Connectors.json");
+        writeJSONToFile(listas, "Connectors.json");
     }
 
     public void criarJsonPortal(LinkedList<Portal> portals){
-        JSONObject obj = new JSONObject();
+        JSONArray listas = new JSONArray();
         int i;
         for(i = 0; i < portals.size(); i++){
+            JSONObject obj = new JSONObject();
             obj.put("Id", portals.get(i).getId());
             obj.put("Type", "Portal");
             obj.put("Latitude", portals.get(i).getLatitude());
@@ -59,11 +66,12 @@ public class Json {
             obj.put("Energia", portals.get(i).getEnergiaAtual());
             obj.put("EnergiaMax", portals.get(i).getEnergiaMaxima());
             obj.put("Ownership", portals.get(i).getNomeJogador());
+            listas.add(obj);
         }
-        writeJSONToFile(obj, "Portals.json");
+        writeJSONToFile(listas, "Portals.json");
     }
 
-    public void writeJSONToFile(JSONObject obj, String fileName) {
+    public void writeJSONToFile(JSONArray obj, String fileName) {
         try(FileWriter file = new FileWriter(fileName)) {
             file.write(obj.toJSONString());
             file.flush();
@@ -102,8 +110,10 @@ public class Json {
                 double intervaloTempo = (double) gameSettings.get("cooldown");
                 local1 = new Connector(id, latitude, longitude, energy, maxEnergy);
                 conectores.add((Connector) local1);
+
             } else if(type.equals("Portal")){
                 String namePortal = (String) localJson.get("name");
+
                 JSONObject coordinates = (JSONObject) localJson.get("coordinates");
                 Double latitude = (Double) coordinates.get("latitude");
                 Double longitude = (Double) coordinates.get("longitude");
@@ -143,4 +153,24 @@ public class Json {
             jogadores.add(player1);
         }
     }
+    /*public void importarJsonConnectors(String nomeFicheiro){
+        for (Object local : locals) {
+            Local local1 = new Local();
+            JSONObject localJson = (JSONObject) local;
+            Long id = (Long) localJson.get("id");
+            String type = (String) localJson.get("type");
+            if (type.equals("Connector")) {
+                JSONObject coordinates = (JSONObject) localJson.get("coordinates");
+                Double latitude = (Double) coordinates.get("latitude");
+                Double longitude = (Double) coordinates.get("longitude");
+
+                JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
+                Long energy = (Long) gameSettings.get("energy");
+                Long maxEnergy = (Long) gameSettings.get("maxEnergy");
+                double intervaloTempo = (double) gameSettings.get("cooldown");
+                local1 = new Connector(id, latitude, longitude, energy, maxEnergy);
+                conectores.add((Connector) local1);
+            }
+        }
+    }*/
 }

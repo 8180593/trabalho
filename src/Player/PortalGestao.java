@@ -30,7 +30,7 @@ public class PortalGestao {
         double tempEnergiaSobra = energiaRetirada - portal.getEnergiaAtual();
 
         if(tempEnergiaSobra >= 0 && tempEnergiaSobra < portal.getEnergiaMaxima() * 0.25){
-            portal.setEstado(null);
+            portal.setEstado(Equipas.Neutro);
             jogador.setEnergia(jogador.getEnergia()-portal.getEnergiaAtual());
 
             jogador.setExperiencia(jogador.getExperiencia() + portal.getEnergiaAtual() + BONUS_NEUTRALIZAR);

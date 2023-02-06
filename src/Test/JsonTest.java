@@ -32,7 +32,9 @@ public class JsonTest {
     void testarCriarJsonConnector() {
         LinkedList<Connector> listaConnectores = new LinkedList<>();
         Connector connector = new Connector(1l, 1, 1, 1, 10);
+        Connector connector1 = new Connector(2l, 44,23,12,12);
         listaConnectores.add(connector);
+        listaConnectores.add(connector1);
         Json json = new Json();
         json.criarJsonConnector(listaConnectores);
     }

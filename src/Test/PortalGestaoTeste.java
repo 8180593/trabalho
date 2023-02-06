@@ -30,7 +30,7 @@ public class PortalGestaoTeste {
 
         portalGestao.destruirPortal(portal, 6, jogador);
 
-        assertEquals(portal.getEstado(), null);
+        assertEquals(portal.getEstado(), Equipas.Neutro);
         assertEquals(jogador.getEnergia(), 5);
         assertEquals(jogador.getExperiencia(), 105);
         assertEquals(jogador.getNivel(), 4);
