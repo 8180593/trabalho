@@ -106,8 +106,9 @@ public class Json {
 
                 JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
                 Long energy = (Long) gameSettings.get("energy");
-                Long maxEnergy = (Long) gameSettings.get("maxEnergy");
-                double intervaloTempo = (double) gameSettings.get("cooldown");
+                //Long maxEnergy = (Long) gameSettings.get("maxEnergy");
+                Long maxEnergy = 100L;
+                Long intervaloTempo = (Long) gameSettings.get("cooldown");
                 local1 = new Connector(id, latitude, longitude, energy, maxEnergy);
                 conectores.add((Connector) local1);
 
@@ -145,12 +146,27 @@ public class Json {
         for (Object player : players) {
             JSONObject playerJson = (JSONObject) player;
             String name = (String) playerJson.get("name");
-            Equipas team = (Equipas) playerJson.get("team");
-            int level = (int) playerJson.get("level");
-            double experiencePoints = (double) playerJson.get("experiencePoints");
-            double energia = (double) playerJson.get("currentEnergy");
+            String teams = (String) playerJson.get("team");
+            Equipas team;
+            switch(teams){
+                case "Sparks":
+                    team = Equipas.Sparks;
+                case "Giants":
+                    team = Equipas.Giants;
+                default:
+                    team = Equipas.Neutro;
+            }
+            Long levelLong = (Long) playerJson.get("level");
+            int level = levelLong.intValue();
+            Long longExperiencePoints = (Long) playerJson.get("experiencePoints");
+            Double experiencePoints = longExperiencePoints.doubleValue();
+            Long longEnergia = (Long) playerJson.get("currentEnergy");
+            Double energia = longEnergia.doubleValue();
             Player player1 = new Player(energia, name, level, experiencePoints, team);
             jogadores.add(player1);
+        }
+        for(int i = 0; i < jogadores.size(); i++){
+            System.out.println(jogadores.get(i).getName());
         }
     }
     /*public void importarJsonConnectors(String nomeFicheiro){
