@@ -1,8 +1,5 @@
 package GUI;
 
-import ClassImplementation.LinkedList;
-import Exceptions.InvalidValue;
-import Player.Player;
 import Player.Map;
 import Player.Portal;
 import Player.Equipas;
@@ -13,8 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddPortalGUI implements ActionListener {
-    private final LinkedList<Player> players = new LinkedList<>();
-    private final JFrame frame = new JFrame("JFrame Example");
+    private final JFrame frame = new JFrame("Add Portal");
     private final JButton button = new JButton("Adicionar Portal");
     private final JLabel label = new JLabel("Adicionar Portal");
     private final JLabel iDportal = new JLabel("Digite o Id do Portal:");
@@ -31,7 +27,7 @@ public class AddPortalGUI implements ActionListener {
     private boolean idPortalValidade;
     private boolean latitudeValidade;
     private boolean longitudeValidade;
-    private int estadoValidade = 0;
+    private int estadoValidade;
     private boolean energiaValidade;
     private Portal portal;
     private Map tempMapa;
@@ -73,6 +69,7 @@ public class AddPortalGUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
+        estadoValidade = 0;
         if (e.getSource() == button) {
             if(Sparks.getState() && !Giants.getState() && !Neutro.getState()){
                 estadoValidade = 1;

@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddConnectorGUI implements ActionListener {
-    private final LinkedList<Player> players = new LinkedList<>();
     private final JFrame frame = new JFrame("JFrame Example");
     private final JButton button = new JButton("Adicionar Connector");
     private final JLabel label = new JLabel(" Adicionar Connector");

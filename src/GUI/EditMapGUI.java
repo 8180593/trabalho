@@ -1,8 +1,6 @@
 package GUI;
 
-import ClassImplementation.LinkedList;
 import Exceptions.InvalidValue;
-import Player.Player;
 import Player.Map;
 
 import java.awt.event.ActionListener;
@@ -11,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class EditMapGUI implements ActionListener {
-    private final LinkedList<Player> players = new LinkedList<>();
     private final JFrame frame = new JFrame("Edit Map");
     private final JButton buttonAdicionarPortal = new JButton("Adicionar Portal");
     private final JButton buttonAdicionarConnector = new JButton("Adicionar Connector");
@@ -68,7 +65,7 @@ public class EditMapGUI implements ActionListener {
             }
         }
         if(e.getSource() == buttonEditarPortal){
-
+            EditarPortalGUI editarPortalGUI = new EditarPortalGUI(tempMapa);
         }
         if(e.getSource() == buttonEditarConnector){
 

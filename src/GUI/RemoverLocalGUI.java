@@ -1,11 +1,7 @@
 package GUI;
 
-import ClassImplementation.LinkedList;
 import Exceptions.InvalidValue;
-import Player.Player;
 import Player.Map;
-import Player.Portal;
-import Player.Connector;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,15 +10,12 @@ import java.awt.event.ActionListener;
 
 public class RemoverLocalGUI implements ActionListener {
 
-    private final LinkedList<Player> players = new LinkedList<>();
     private final JFrame frame = new JFrame("Remover Local");
     private final JButton button = new JButton("Remover Local");
     private final JLabel label = new JLabel("Remover Local");
     private final JLabel idLocal = new JLabel("Digite o Id do Local:");
     private final JTextField fieldIdLocal = new JTextField();
     private int idValidade;
-    private Connector connector;
-    private Portal portal;
     private Map tempMapa;
 
 

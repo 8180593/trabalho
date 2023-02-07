@@ -2,7 +2,6 @@ package GUI;
 import Exceptions.InvalidValue;
 import Player.Map;
 
-import java.awt.event.ActionEvent;
 
 /**
  * @author Daniela Moreira 8210311
