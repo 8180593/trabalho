@@ -14,6 +14,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Json {
+    /**
+     * Método que cria um ficheiro JSON com os dados do historico do portal
+     * @param connectors lista de historicos do Connector
+     */
     public void criarJsonConnectorHistorico(LinkedList<ConnectorHistorico> connectors){
         JSONArray listas = new JSONArray();
         int i;
@@ -25,7 +29,10 @@ public class Json {
         }
         writeJSONToFile(listas, "ConnectorHistorico.json");
     }
-
+    /**
+     * Método que cria um ficheiro JSON com os jogadores
+     * @param players lista de jogadores
+     */
     public void criarJsonPlayer(LinkedList<Player> players){
         JSONArray listas = new JSONArray();
         int i;
@@ -41,7 +48,10 @@ public class Json {
         }
         writeJSONToFile(listas, "Players.json");
     }
-
+    /**
+     * Método que cria um ficheiro JSON com os conectores
+     * @param connectors lista de connectores
+     */
     public void criarJsonConnector(LinkedList<Connector> connectors){
         JSONArray listas = new JSONArray();
         int i;
@@ -56,7 +66,10 @@ public class Json {
         }
         writeJSONToFile(listas, "Connectors.json");
     }
-
+    /**
+     * Método que cria um ficheiro JSON com os portais
+     * @param portals lista de portais
+     */
     public void criarJsonPortal(LinkedList<Portal> portals){
         JSONArray listas = new JSONArray();
         int i;
@@ -74,6 +87,11 @@ public class Json {
         writeJSONToFile(listas, "Portals.json");
     }
 
+    /**
+     * Método que escreve no ficheiro JSON
+     * @param obj objeto Json para escrever no ficheiro
+     * @param fileName nome do ficheiro
+     */
     public void writeJSONToFile(JSONArray obj, String fileName) {
         try(FileWriter file = new FileWriter(fileName)) {
             file.write(obj.toJSONString());
@@ -84,6 +102,12 @@ public class Json {
             e.printStackTrace();
         }
     }
+    /**
+     * Método que importa os dados do ficheiro JSON
+     * @param nomeFicheiro nome do ficheiro
+     * @throws IOException
+     * @throws ParseException
+     */
     public void importarJson(String nomeFicheiro) throws IOException, ParseException {
         LinkedList<Portal> portais = new LinkedList<>();
         LinkedList<Connector> conectores = new LinkedList<>();
@@ -125,7 +149,7 @@ public class Json {
                 Long energy = (Long) gameSettings.get("energy");
                 Long maxEnergy = (Long) gameSettings.get("maxEnergy");
 
-                JSONObject ownership = (JSONObject) localJson.get("ownership");
+                JSONObject ownership = (JSONObject) gameSettings.get("ownership");
                 String name = (String) ownership.get("player");
 
                 Equipas equipa = null;
@@ -167,8 +191,10 @@ public class Json {
             Player player1 = new Player(energia, name, level, experiencePoints, team);
             jogadores.add(player1);
         }
-        for(int i = 0; i < jogadores.size(); i++){
-            System.out.println(jogadores.get(i).getName());
+        for(Object routs : routes){
+            jsonObject = (JSONObject) routs;
+            int from = ((Long) jsonObject.get("from")).intValue();
+            int to = ((Long) jsonObject.get("to")).intValue();
         }
     }
 }
