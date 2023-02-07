@@ -125,7 +125,7 @@ public class Json {
                 Long energy = (Long) gameSettings.get("energy");
                 Long maxEnergy = (Long) gameSettings.get("maxEnergy");
 
-                JSONObject ownership = (JSONObject) localJson.get("ownership");
+                JSONObject ownership = (JSONObject) gameSettings.get("ownership");
                 String name = (String) ownership.get("player");
 
                 Equipas equipa = null;
