@@ -1,5 +1,8 @@
 package Player;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 import ClassImplementation.LinkedList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

@@ -1,9 +1,13 @@
 package ClassImplementation;
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 
-import ClassImplementation.DoubleNode;
 import Exceptions.ElementNotFoundException;
 import Exceptions.EmptyCollectionException;
 import Interfaces.ListADT;
+
 import java.util.Iterator;
 
 public class DoubleList<T> implements ListADT<T>{

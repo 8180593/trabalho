@@ -1,5 +1,8 @@
 package ClassImplementation;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 import Interfaces.ListADT;
 
 import java.util.Iterator;

@@ -1,5 +1,8 @@
 package Test;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 import ClassImplementation.LinkedList;
 import Player.*;
 import org.json.simple.parser.ParseException;

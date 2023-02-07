@@ -7,7 +7,10 @@ package ClassImplementation;
 
 import Interfaces.HeapADT;
 import Exceptions.EmptyCollectionException;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class LinkedHeap<T> extends LinkedBinaryTree<T> implements HeapADT<T> {
    public HeapNode<T> lastNode;  
    public LinkedHeap() {

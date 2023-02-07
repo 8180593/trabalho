@@ -1,11 +1,10 @@
 package Interfaces;
-
-import java.util.Iterator;
-
 /**
  * @author 8210311 Daniela Moreira
  * @author 8210367 Orlando Pires
  */
+import java.util.Iterator;
+
 public interface GraphADT <T>{
     void addVertex(T vertex);
     void removeVertex(T vertex);

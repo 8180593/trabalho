@@ -1,5 +1,8 @@
 package ClassImplementation;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class BinaryTreeNode<T> {
 
     protected T element;

@@ -3,12 +3,14 @@ package ClassImplementation;
 import Exceptions.ElementNotFoundException;
 import Exceptions.QueueArrayException;
 import Interfaces.BinaryTreeADT;
-import Interfaces.QueueADT;
 
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class LinkedBinaryTree<T> implements BinaryTreeADT<T> {
 
     protected int count;

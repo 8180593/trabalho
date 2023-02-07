@@ -1,5 +1,8 @@
 package ClassImplementation;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class DoubleNode<T>{
     private T element;
     private DoubleNode<T> next;

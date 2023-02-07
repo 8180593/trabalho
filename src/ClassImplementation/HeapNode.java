@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package ClassImplementation;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class HeapNode<T> extends BinaryTreeNode<T>{
    protected HeapNode<T> parent;
    /**
