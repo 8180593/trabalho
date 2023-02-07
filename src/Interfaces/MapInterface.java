@@ -4,6 +4,7 @@ import Exceptions.InvalidValue;
 import Player.Connector;
 import Player.Equipas;
 import Player.Portal;
+import Player.Local;
 
 /**
  * @author 8210311 Daniela Moreira
@@ -11,7 +12,7 @@ import Player.Portal;
  */
 public interface MapInterface {
     void addLocal(Portal portal);
-    void removeLocal(Portal portal);
+    void removeLocal(Local local, int posicao);
     void editLocal(Portal portal, double energia) throws InvalidValue;
     void editLocal(Portal portal, double latitude, double longitude) throws InvalidValue;
     void editLocal(Portal portal, Equipas estado);
@@ -19,5 +20,4 @@ public interface MapInterface {
     void addLocal(Connector connector);
     void editLocal(Connector connector, double energia) throws InvalidValue;
     void editLocal(Connector connector, double latitude, double longitude) throws InvalidValue;
-    void removeLocal(Connector connector);
 }

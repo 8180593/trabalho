@@ -10,6 +10,8 @@ import ClassImplementation.Network;
 import Exceptions.InvalidValue;
 import Interfaces.MapInterface;
 
+import java.util.Objects;
+
 /**
  * Classe que representa o mapa do jogo
  */
@@ -21,7 +23,6 @@ public class Map extends Network<String> implements MapInterface{
      * Construtor da classe Map
      */
     public Map(){
-        this.contadorVertices = 0;
         this.network = new Network<Local>();
         this.locais = new LinkedList<Local>();
     }
@@ -34,10 +35,6 @@ public class Map extends Network<String> implements MapInterface{
         return network;
     }
 
-    public int getContadorVertices(){
-        return contadorVertices;
-    }
-
     /**
      * Adicionar um portal ao mapa
      * @param portal novo portal a ser adicionado
@@ -46,7 +43,6 @@ public class Map extends Network<String> implements MapInterface{
     public void addLocal(Portal portal) {
         network.addVertex(portal);
         locais.add(portal);
-        contadorVertices++;
     }
     /**
      * Adicionar um connector ao mapa
@@ -56,7 +52,6 @@ public class Map extends Network<String> implements MapInterface{
     public void addLocal(Connector connector) {
         network.addVertex(connector);
         locais.add(connector);
-        contadorVertices++;
     }
 
     /**
@@ -102,19 +97,12 @@ public class Map extends Network<String> implements MapInterface{
 
     /**
      * Remover um portal
-     * @param portal portal a ser leminado
+     * @param local portal a ser leminado
      */
     @Override
-    public void removeLocal(Portal portal) {
-        network.removeVertex(portal);
-    }
-    /**
-     * Remover um connector
-     * @param connector connector a ser leminado
-     */
-    @Override
-    public void removeLocal(Connector connector) {
-        network.removeVertex(connector);
+    public void removeLocal(Local local, int posicao) {
+        network.removeVertex(local);
+        locais.remove(posicao);
     }
 
     /**
@@ -149,5 +137,14 @@ public class Map extends Network<String> implements MapInterface{
             throw new InvalidValue("Longitude fora dos limites");
         else
             connector.setLongitude(longitude);
+    }
+
+    public int procurarLocal(long id){
+        for(int i = 0; i < locais.size(); i++){
+            if(Objects.equals(id, locais.get(i).getId())){
+                return i;
+            }
+        }
+        return -1;
     }
 }

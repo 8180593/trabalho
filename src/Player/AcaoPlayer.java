@@ -28,7 +28,7 @@ public class AcaoPlayer {
     public LinkedList<Integer> proximaLocalizacao(Map map, Player jogador){
         LinkedList<Integer> resultados = new LinkedList<>();
 
-        for(int i = 0; i < map.getContadorVertices(); i++) {
+        for(int i = 0; i < map.getLocais().size(); i++) {
             if (map.hasEdge(jogador.getIdLocalAtual(), i)) {
                 resultados.add(i);
             }

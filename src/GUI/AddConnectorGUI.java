@@ -16,7 +16,7 @@ public class AddConnectorGUI implements ActionListener {
     private final JFrame frame = new JFrame("JFrame Example");
     private final JButton button = new JButton("Adicionar Connector");
     private final JLabel label = new JLabel(" Adicionar Connector");
-    private final JLabel iDconnector = new JLabel("Digite o Id do Portal:");
+    private final JLabel idConnector = new JLabel("Digite o Id do Portal:");
     private final JTextField fieldIdConnector = new JTextField();
     private final JLabel LatitudeConnector = new JLabel("Digite a Latitude do Connector:");
     private final JTextField fieldLatitudeConnector = new JTextField();
@@ -38,14 +38,14 @@ public class AddConnectorGUI implements ActionListener {
         button.setBounds(250, 150,100,20);
         button.addActionListener(this);
         label.setBounds(100,100, 100,20);
-        iDconnector.setBounds(100,100, 100,20);
+        idConnector.setBounds(100,100, 100,20);
         fieldIdConnector.setBounds(150, 100, 100, 10);
 
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(75, 75, 150, 300));
         panel.setLayout(new GridLayout(0, 1));
         panel.add(label);
-        panel.add(iDconnector);
+        panel.add(idConnector);
         panel.add(fieldIdConnector);
         panel.add(LatitudeConnector);
         panel.add(fieldLatitudeConnector);
