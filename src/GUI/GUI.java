@@ -12,7 +12,7 @@ public class GUI{
 
     public static void main(String[] args) throws InvalidValue {
         Map mapa = new Map();
-        AddConnectorGUI connectorGUI = new AddConnectorGUI(mapa);
+        AddPortalGUI portalGUIGUI = new AddPortalGUI(mapa);
 
     }
 

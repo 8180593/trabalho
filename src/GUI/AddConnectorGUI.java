@@ -22,15 +22,17 @@ public class AddConnectorGUI implements ActionListener {
     private final JTextField fieldLatitudeConnector = new JTextField();
     private final JLabel LongitudeConnector = new JLabel("Digite a Longitude do Connector:");
     private final JTextField fieldLongitudeConnector = new JTextField();
-    private final JLabel IntervaloTempoConnector = new JLabel("Digite o Intervalo do Connector:");
+    private final JLabel intervaloTempoConnector = new JLabel("Digite o Intervalo do Connector:");
     private final JTextField fieldIntervaloTempoConnector = new JTextField();
     private final JLabel EnergiaConnector = new JLabel("Digite a Energia do Connector:");
     private final JTextField fieldEnergiaConnector = new JTextField();
     private boolean idConnectorValidade;
     private boolean latitudeValidade;
     private boolean longitudeValidade;
+    private boolean intervaloTempoValidade;
     private boolean energiaValidade;
     private Connector connector;
+    private Map tempMapa;
 
     public AddConnectorGUI(Map mapa) throws InvalidValue {
         button.setBounds(250, 150,100,20);
@@ -51,7 +53,7 @@ public class AddConnectorGUI implements ActionListener {
         panel.add(fieldLongitudeConnector);
         panel.add(EnergiaConnector);
         panel.add(fieldIntervaloTempoConnector);
-        panel.add(IntervaloTempoConnector);
+        panel.add(intervaloTempoConnector);
         panel.add(fieldEnergiaConnector);
         panel.add(button);
 
@@ -62,7 +64,7 @@ public class AddConnectorGUI implements ActionListener {
         frame.pack();
         frame.setVisible(true);
 
-        idConnectorValidade = validInputId(fieldIdConnector.getText(), mapa);
+        tempMapa = mapa;
 
     }
 
@@ -70,9 +72,11 @@ public class AddConnectorGUI implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == button) {
 
+            idConnectorValidade = validInputId(Long.parseLong(fieldIdConnector.getText()), tempMapa);
             latitudeValidade = validInputLatitude(Double.parseDouble(fieldLatitudeConnector.getText()));
             longitudeValidade = validInputLongitude(Double.parseDouble(fieldLongitudeConnector.getText()));
-            energiaValidade = validInputEnergia(Double.parseDouble(fieldEnergiaConnector.getText()));
+            intervaloTempoValidade = validInputPositivo(Double.parseDouble(fieldIntervaloTempoConnector.getText()));
+            energiaValidade = validInputPositivo(Double.parseDouble(fieldEnergiaConnector.getText()));
 
             if(!idConnectorValidade){
                 System.out.println("O Id já existe!");
@@ -83,13 +87,22 @@ public class AddConnectorGUI implements ActionListener {
             if(!longitudeValidade){
                 System.out.println("A longitude só pode ter valores entre -180 e 180 graus!");
             }
+            if(!intervaloTempoValidade){
+                System.out.println("O intervalo de tempo tem de ser positiva!");
+            }
             if(!energiaValidade){
                 System.out.println("A energia tem de ser positiva!");
             }
-            if(idConnectorValidade && latitudeValidade && longitudeValidade && energiaValidade){
+            if(idConnectorValidade && latitudeValidade && longitudeValidade && intervaloTempoValidade && energiaValidade){
                 System.out.println("Connector criado com sucesso!");
-                //Connector connector = new Connector();
-                //Depois como é que adiciono ao mapa??? Nao posso passar pelos parametros
+
+                connector = new Connector(Long.parseLong(fieldIdConnector.getText()),
+                        Double.parseDouble(fieldLatitudeConnector.getText()),
+                        Double.parseDouble(fieldLongitudeConnector.getText()),
+                        Long.parseLong(fieldIntervaloTempoConnector.getText()),
+                        Double.parseDouble(fieldEnergiaConnector.getText()));
+
+                tempMapa.addLocal(connector);
             }
         }
     }
@@ -104,7 +117,7 @@ public class AddConnectorGUI implements ActionListener {
      * @param mapa do jogo
      * @return true se o input for válido
      */
-    public boolean validInputId(String id, Map mapa){
+    public boolean validInputId(long id, Map mapa){
         for(int i = 0; i < mapa.getLocais().size(); i++){
             if(mapa.getLocais().get(i).getId().equals(id)){
                 return false;
@@ -140,16 +153,16 @@ public class AddConnectorGUI implements ActionListener {
     }
 
     /**
-     * Metodo Valid Input Energia
+     * Metodo Valid Input Positivo
      *
-     * Verifica se a energia colocada no input é válida.
-     * Neste caso, verifica se o valor da energia é um número positivo.
+     * Verifica se a energia/intervaloTempo colocada no input é válida.
+     * Neste caso, verifica se o valor da energia/intervaloTempo é um número positivo.
      *
-     * @param energia do portal
+     * @param positivo do portal
      * @return true se for válida
      */
-    public boolean validInputEnergia(double energia){
-        return !(energia < 0);
+    public boolean validInputPositivo(double positivo){
+        return !(positivo < 0);
     }
 
 }
