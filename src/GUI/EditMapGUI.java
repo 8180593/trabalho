@@ -73,7 +73,7 @@ public class EditMapGUI implements ActionListener {
         if(e.getSource() == buttonEditarConnector){
 
         }
-        
+
         if(e.getSource() == buttonRemoverLocal){
             try {
                 RemoverLocalGUI removerLocalGUI = new RemoverLocalGUI(tempMapa);
