@@ -95,10 +95,11 @@ public class Json {
 
 
         for (Object local : locals) {
-            Local local1 = new Local();
+            Local local1;
             JSONObject localJson = (JSONObject) local;
             Long id = (Long) localJson.get("id");
             String type = (String) localJson.get("type");
+
             if(type.equals("Connector")) {
                 JSONObject coordinates = (JSONObject) localJson.get("coordinates");
                 Double latitude = (Double) coordinates.get("latitude");
@@ -106,10 +107,8 @@ public class Json {
 
                 JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
                 Long energy = (Long) gameSettings.get("energy");
-                //Long maxEnergy = (Long) gameSettings.get("maxEnergy");
-                Long maxEnergy = 100L;
                 Long intervaloTempo = (Long) gameSettings.get("cooldown");
-                local1 = new Connector(id, latitude, longitude, energy, maxEnergy);
+                local1 = new Connector(id, latitude, longitude, intervaloTempo, energy);
                 conectores.add((Connector) local1);
 
             } else if(type.equals("Portal")){
@@ -138,7 +137,7 @@ public class Json {
                     name = "None";
                 }
 
-                local1 = new Portal(id, latitude, longitude, equipa, maxEnergy);
+                local1 = new Portal(id, latitude, longitude, equipa, maxEnergy, namePortal, energy);
                 portais.add((Portal) local1);
             }
         }
@@ -169,24 +168,4 @@ public class Json {
             System.out.println(jogadores.get(i).getName());
         }
     }
-    /*public void importarJsonConnectors(String nomeFicheiro){
-        for (Object local : locals) {
-            Local local1 = new Local();
-            JSONObject localJson = (JSONObject) local;
-            Long id = (Long) localJson.get("id");
-            String type = (String) localJson.get("type");
-            if (type.equals("Connector")) {
-                JSONObject coordinates = (JSONObject) localJson.get("coordinates");
-                Double latitude = (Double) coordinates.get("latitude");
-                Double longitude = (Double) coordinates.get("longitude");
-
-                JSONObject gameSettings = (JSONObject) localJson.get("gameSettings");
-                Long energy = (Long) gameSettings.get("energy");
-                Long maxEnergy = (Long) gameSettings.get("maxEnergy");
-                double intervaloTempo = (double) gameSettings.get("cooldown");
-                local1 = new Connector(id, latitude, longitude, energy, maxEnergy);
-                conectores.add((Connector) local1);
-            }
-        }
-    }*/
 }

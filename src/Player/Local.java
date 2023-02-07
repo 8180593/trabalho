@@ -14,6 +14,13 @@ public class Local {
         this.energiaAtual = 0;
     }
 
+    public Local(Long id, double latitude, double longitude, double energiaAtual) {
+        this.id = id;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.energiaAtual = energiaAtual;
+    }
+
     public Local(){
 
     }
