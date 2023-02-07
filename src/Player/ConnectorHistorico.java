@@ -6,12 +6,17 @@ package Player;
 import java.time.LocalTime;
 
 /**
- *
+ * Classe que representa um historico de um Connector
  */
 public class ConnectorHistorico {
     private Player player;
     private LocalTime data = LocalTime.now();
 
+    /**
+     * Método construtor
+     * @param player Jogador que passou pelo Connector
+     * @param data Data em que o jogador passou pelo Connector
+     */
     public ConnectorHistorico(Player player, LocalTime data) {
         this.player = player;
         this.data = data;

@@ -68,9 +68,9 @@ public class PortalGestao {
      * Se a energia doada for superior à energia do jogador, o jogador não consegue
      * Aumentar a energia do portal.
      * Criar um registo de fortalecimento do portal.
-     * @param portal
-     * @param energiaDoada
-     * @param jogador
+     * @param portal portal a ser fortalecido
+     * @param energiaDoada energia doada pelo jogador
+     * @param jogador jogador que vai doar energia
      */
     public void fortalecerPortal(Portal portal, double energiaDoada, Player jogador) throws InvalidValue {
         if(energiaDoada > jogador.getEnergia()) {
@@ -104,10 +104,10 @@ public class PortalGestao {
     }
 
     /**
-     *
-     * @param portal
-     * @param energiaSobra
-     * @param jogador
+     * Metodo de registo de ações
+     * @param portal portal a ser conquistado
+     * @param energiaSobra energia a ser adicionada ao portal
+     * @param jogador jogador a realizar a ação
      */
     public void determinarEstadoConquistado(Portal portal, double energiaSobra, Player jogador){
         portal.setEnergiaAtual(energiaSobra);

@@ -7,7 +7,13 @@ import ClassImplementation.LinkedList;
  * @author 8210367 Orlando Pires
  */
 public class Equipa {
+    /**
+     * Equipa do jogador
+     */
     private Equipas equipa;
+    /**
+     * Lista de jogadores pertencentes a essa equipa
+     */
     private LinkedList<Player> jogadores;
 
     public Equipas getEquipa() {

@@ -36,7 +36,17 @@ public class AcaoPlayer {
         return resultados;
     }
 
-    //para rever, acho que precisa de ser feita no gui
+    /**
+     * Método Andar
+     *
+     * Este método permite ao jogador realizar uma movimentação para uma
+     * localização adjacente à sua localização atual.
+     *
+     * @param jogador o jogador a querer realizar uma movimentação
+     * @param escolha a localização para a qual o jogador quer viajar
+     * @param resultados a linked list com as localizações para as quais o
+     * jogador pode viajar
+     */
     public void andar(Player jogador, int escolha, LinkedList<Integer> resultados){
         for (int i = 0; i < resultados.size(); i++){
             if(resultados.get(i) == escolha){

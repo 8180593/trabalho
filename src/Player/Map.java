@@ -1,20 +1,25 @@
 package Player;
-
-import ClassImplementation.*;
-import Exceptions.InvalidValue;
-import Interfaces.MapInterface;
-import Interfaces.NetworkADT;
-
 /**
  *
  * @author Daniela Moreira 8210311
  * @author Orlando Pires 8210367
  */
+
+import ClassImplementation.LinkedList;
+import ClassImplementation.Network;
+import Exceptions.InvalidValue;
+import Interfaces.MapInterface;
+
+/**
+ * Classe que representa o mapa do jogo
+ */
 public class Map extends Network<String> implements MapInterface{
     private static int contadorVertices;
     private Network<Local> network;
     private LinkedList<Local> locais;
-
+    /**
+     * Construtor da classe Map
+     */
     public Map(){
         this.contadorVertices = 0;
         this.network = new Network<Local>();
@@ -43,7 +48,10 @@ public class Map extends Network<String> implements MapInterface{
         locais.add(portal);
         contadorVertices++;
     }
-
+    /**
+     * Adicionar um connector ao mapa
+     * @param connector novo connector a ser adicionado
+     */
     @Override
     public void addLocal(Connector connector) {
         network.addVertex(connector);
@@ -100,17 +108,20 @@ public class Map extends Network<String> implements MapInterface{
     public void removeLocal(Portal portal) {
         network.removeVertex(portal);
     }
-
+    /**
+     * Remover um connector
+     * @param connector connector a ser leminado
+     */
     @Override
     public void removeLocal(Connector connector) {
         network.removeVertex(connector);
     }
 
     /**
-     *
-     * @param connector
-     * @param energia
-     * @throws InvalidValue
+     * Editar o nível de energia de um connector
+     * @param connector connector a ser editado
+     * @param energia nova energia do connector
+     * @throws InvalidValue exceção retornada quando o valor e invalido
      */
     @Override
     public void editLocal(Connector connector, double energia) throws InvalidValue{
@@ -121,10 +132,12 @@ public class Map extends Network<String> implements MapInterface{
     }
 
     /**
-     * @param connector
-     * @param latitude
-     * @param longitude
-     * @throws InvalidValue
+     * Editar a localização de um connector
+     * 1-Verifica se a latitude e longitude estão dentro dos limites, caso não estjam lança uma exceção
+     * @param connector connector a ser alterado
+     * @param latitude latitude a ser alterada
+     * @param longitude longitude a ser alterada
+     * @throws InvalidValue exceção retornada quando o valor e invalido
      */
     @Override
     public void editLocal(Connector connector, double latitude, double longitude) throws InvalidValue{

@@ -14,7 +14,11 @@ public class Player {
     private final int X = 4;
     private final int Y = 2;
     private double energiaCapacidade;
-
+    /**
+     * Construtor da classe Player
+     * @param name nome do jogador
+     * @param equipa equipa do jogador
+     */
     public Player(String name, Equipas equipa) {
         this.energia = 0.0;
         this.name = name;
@@ -24,7 +28,14 @@ public class Player {
         this.expParaProximoNivel = 100;
         this.energiaCapacidade = nivel + 49;
     }
-
+    /**
+     * Construtor da classe Player
+     * @param energia energia do jogador
+     * @param name nome do jogador
+     * @param nivel nivel do jogador
+     * @param experiencia experiencia do jogador
+     * @param equipa equipa do jogador
+     */
     public Player(Double energia, String name, int nivel, double experiencia, Equipas equipa) {
         this.energia = energia;
         this.name = name;
@@ -85,7 +96,10 @@ public class Player {
     public void setEquipa(Equipas equipa) {
         this.equipa = equipa;
     }
-
+    /**
+     * Metodo para mudar o jogador para o proximo nivel
+     * Este metodo verifica se o jogador tem a experiencia necessaria para subir de nivel
+     */
     public void mudarProximoNivel(){
         while(getExperiencia() > getExpParaProximoNivel()){
             int tempNivel = getNivel();

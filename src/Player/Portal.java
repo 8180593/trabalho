@@ -12,7 +12,14 @@ public class Portal extends Local{
     private final LinkedStack<Registos> registos;
     private String nomePortal;
 
-
+    /**
+     * Construtor da classe Portal
+     * @param id id do portal
+     * @param latitude latitude do portal
+     * @param longitude longitude do portal
+     * @param estado estado do portal
+     * @param energiaMaxima energia maxima do portal
+     */
     public Portal(long id, double latitude, double longitude, Equipas estado, double energiaMaxima) {
         super(id, latitude, longitude);
         this.estado = estado;
@@ -20,7 +27,16 @@ public class Portal extends Local{
         this.nomePortal = null;
         this.registos = new LinkedStack<Registos>();
     }
-
+    /**
+     * Construtor da classe Portal
+     * @param id id do portal
+     * @param latitude latitude do portal
+     * @param longitude longitude do portal
+     * @param estado estado do portal
+     * @param energiaMaxima energia maxima do portal
+     * @param nomeJogador nome do jogador que controla o portal
+     * @param energia energia atual do portal
+     */
     public Portal(long id, double latitude, double longitude, Equipas estado, double energiaMaxima, String nomeJogador, double energia) {
         super(id, latitude, longitude, energia);
         this.estado = estado;
