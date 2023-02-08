@@ -139,6 +139,12 @@ public class Map extends Network<String> implements MapInterface{
             connector.setLongitude(longitude);
     }
 
+    /**
+     * Não funciona
+     *
+     * @param id
+     * @return
+     */
     public int procurarLocal(long id){
         for(int i = 0; i < locais.size(); i++){
             if(Objects.equals(id, locais.get(i).getId())){
