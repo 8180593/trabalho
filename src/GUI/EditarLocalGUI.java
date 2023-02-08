@@ -1,19 +1,19 @@
 package GUI;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
+import Exceptions.InvalidValue;
+import Player.Connector;
 import Player.Map;
 import Player.Portal;
-import Player.Equipas;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EditarPortalGUI implements ActionListener {
-    //tres butoes mas quatro sitios para escrever
-    //um edita apenas a energia
-    //um edita ambos a latitude e longitude
-    //um edita o estado (equipa)
+public class EditarLocalGUI implements ActionListener {
 
     private final JFrame frame = new JFrame("Editar Portal");
     private final JLabel idLocal = new JLabel("Digite o Id do Local:");
@@ -24,7 +24,7 @@ public class EditarPortalGUI implements ActionListener {
     private final JTextField fieldLongitudePortal = new JTextField();
     private final JButton buttonCoordenadas = new JButton("Editar Coordenadas Portal");
     private final JLabel labelCoordenadas = new JLabel("Editar Coordenadas Portal");
-    private final JLabel EnergiaPortal = new JLabel("Digite a Energia Máxima do Portal:");
+    private final JLabel EnergiaPortal = new JLabel("Digite a Energia do Portal:");
     private final JTextField fieldEnergiaPortal = new JTextField();
     private final JButton buttonEnergia = new JButton("Editar Energia Portal");
     private final JLabel labelEnergia = new JLabel("Editar Energia Portal");
@@ -33,7 +33,7 @@ public class EditarPortalGUI implements ActionListener {
     private boolean longitudeValidade;
     private Map tempMapa;
 
-    public EditarPortalGUI(Map mapa) {
+    public EditarLocalGUI(Map mapa) {
         buttonCoordenadas.setBounds(250, 150, 100, 20);
         buttonCoordenadas.addActionListener(this);
         labelCoordenadas.setBounds(100, 100, 100, 20);
@@ -91,8 +91,20 @@ public class EditarPortalGUI implements ActionListener {
                     System.out.println("A longitude só pode ter valores entre -180 e 180 graus!");
                 }
                 if(latitudeValidade && longitudeValidade){
-                    tempMapa.getLocais().get(idValidade).setLatitude(Double.parseDouble(fieldLatitudePortal.getText()));
-                    tempMapa.getLocais().get(idValidade).setLongitude(Double.parseDouble(fieldLongitudePortal.getText()));
+                    try {
+                        tempMapa.editLocal((Portal) tempMapa.getLocais().get(idValidade),
+                                Double.parseDouble(fieldLatitudePortal.getText()),
+                                Double.parseDouble(fieldLongitudePortal.getText()));
+                    } catch (InvalidValue ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        tempMapa.editLocal((Connector) tempMapa.getLocais().get(idValidade),
+                                Double.parseDouble(fieldLatitudePortal.getText()),
+                                Double.parseDouble(fieldLongitudePortal.getText()));
+                    } catch (InvalidValue ex) {
+                        throw new RuntimeException(ex);
+                    }
                     System.out.println("A longitude e a latitude foram editadas com sucesso!");
                 }
             }
@@ -106,7 +118,16 @@ public class EditarPortalGUI implements ActionListener {
                 if(Double.parseDouble(fieldEnergiaPortal.getText()) < 0){
                     System.out.println("A energia tem de ser positiva!");
                 } else {
-                    tempMapa.getLocais().get(idValidade).setEnergiaAtual(Double.parseDouble(fieldEnergiaPortal.getText()));
+                    try {
+                        tempMapa.editLocal((Portal) tempMapa.getLocais().get(idValidade), Double.parseDouble(fieldEnergiaPortal.getText()));
+                    } catch (InvalidValue ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        tempMapa.editLocal((Connector) tempMapa.getLocais().get(idValidade), Double.parseDouble(fieldEnergiaPortal.getText()));
+                    } catch (InvalidValue ex) {
+                        throw new RuntimeException(ex);
+                    }
                     System.out.println("A energia foi editada com sucesso!");
                 }
             }

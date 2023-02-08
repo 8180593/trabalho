@@ -3,17 +3,16 @@ package GUI;
 import Exceptions.InvalidValue;
 import Player.Map;
 
-import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EditMapGUI implements ActionListener {
     private final JFrame frame = new JFrame("Edit Map");
     private final JButton buttonAdicionarPortal = new JButton("Adicionar Portal");
     private final JButton buttonAdicionarConnector = new JButton("Adicionar Connector");
-    private final JButton buttonEditarPortal = new JButton("Editar Portal");
-    private final JButton buttonEditarConnector = new JButton("Editar Connector");
+    private final JButton buttonEditarLocal = new JButton("Editar Local");
     private final JButton buttonRemoverLocal = new JButton("Remover Portal");
     private final JButton buttonAdicionarLigacao = new JButton("Adicionar Ligação");
     private Map tempMapa;
@@ -23,10 +22,8 @@ public class EditMapGUI implements ActionListener {
         buttonAdicionarPortal.addActionListener(this);
         buttonAdicionarConnector.setBounds(250, 150, 100, 20);
         buttonAdicionarConnector.addActionListener(this);
-        buttonEditarPortal.setBounds(250, 150, 100, 20);
-        buttonEditarPortal.addActionListener(this);
-        buttonEditarConnector.setBounds(250, 150, 100, 20);
-        buttonEditarConnector.addActionListener(this);
+        buttonEditarLocal.setBounds(250, 150, 100, 20);
+        buttonEditarLocal.addActionListener(this);
         buttonRemoverLocal.setBounds(250, 150, 100, 20);
         buttonRemoverLocal.addActionListener(this);
         buttonAdicionarLigacao.setBounds(250, 150, 100, 20);
@@ -38,8 +35,7 @@ public class EditMapGUI implements ActionListener {
 
         panel.add(buttonAdicionarPortal);
         panel.add(buttonAdicionarConnector);
-        panel.add(buttonEditarPortal);
-        panel.add(buttonEditarConnector);
+        panel.add(buttonEditarLocal);
         panel.add(buttonRemoverLocal);
         panel.add(buttonAdicionarLigacao);
 
@@ -64,11 +60,8 @@ public class EditMapGUI implements ActionListener {
                 throw new RuntimeException(ex);
             }
         }
-        if(e.getSource() == buttonEditarPortal){
-            EditarPortalGUI editarPortalGUI = new EditarPortalGUI(tempMapa);
-        }
-        if(e.getSource() == buttonEditarConnector){
-
+        if(e.getSource() == buttonEditarLocal){
+            EditarLocalGUI editarLocalGUI = new EditarLocalGUI(tempMapa);
         }
 
         if(e.getSource() == buttonRemoverLocal){
@@ -78,6 +71,8 @@ public class EditMapGUI implements ActionListener {
                 throw new RuntimeException(ex);
             }
         }
-
+        if(e.getSource() == buttonAdicionarLigacao){
+            AdicionarLigacaoGUI adicionarLigacaoGUI = new AdicionarLigacaoGUI(tempMapa);
+        }
     }
 }

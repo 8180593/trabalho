@@ -26,7 +26,7 @@ public class AcaoPlayer {
      * a localização atual do jogador
      */
     public LinkedList<Integer> proximaLocalizacao(Map map, Player jogador){
-        LinkedList<Integer> resultados = new LinkedList<>();
+        LinkedList<Integer> resultados = new LinkedList<Integer>();
 
         for(int i = 0; i < map.getLocais().size(); i++) {
             if (map.hasEdge(jogador.getIdLocalAtual(), i)) {
@@ -46,14 +46,16 @@ public class AcaoPlayer {
      * @param escolha a localização para a qual o jogador quer viajar
      * @param resultados a linked list com as localizações para as quais o
      * jogador pode viajar
+     * @return true se andou, false se a escolha nao corresponde a nenhuma das opções.
      */
-    public void andar(Player jogador, int escolha, LinkedList<Integer> resultados){
+    public boolean andar(Player jogador, int escolha, LinkedList<Integer> resultados){
         for (int i = 0; i < resultados.size(); i++){
             if(resultados.get(i) == escolha){
                 jogador.setIdLocalAtual(escolha);
-                //andou com sucesso
+                return true;
             }
         }
+        return false;
     }
 
     /**
