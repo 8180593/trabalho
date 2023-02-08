@@ -140,8 +140,7 @@ public class Map extends Network<String> implements MapInterface{
     }
 
     /**
-     * Não funciona
-     *
+     * Afinal ja funciona
      * @param id
      * @return
      */

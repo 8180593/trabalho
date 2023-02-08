@@ -135,6 +135,7 @@ public class MapTeste {
         Portal portal =new Portal(1l, 1,1, Equipas.Sparks, 1);
         Portal portal1 =new Portal(2l, 1,1, Equipas.Sparks, 1);
         mapa.addLocal(portal);
-        assertEquals(1, mapa.procurarLocal(2l));
+        mapa.addLocal(portal1);
+        assertEquals(0, mapa.procurarLocal(1l));
     }
 }
