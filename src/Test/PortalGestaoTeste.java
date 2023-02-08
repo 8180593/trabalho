@@ -35,7 +35,7 @@ public class PortalGestaoTeste {
         assertEquals(jogador.getExperiencia(), 105);
         assertEquals(jogador.getNivel(), 4);
         assertEquals(portal.getEnergiaAtual(), 0);
-        assertEquals(portal.getNomeJogador(), null);
+        assertEquals(portal.getJogadorNome(), null);
     }
 
     /**
@@ -56,7 +56,7 @@ public class PortalGestaoTeste {
         assertEquals(jogador.getExperiencia(), 259);
         assertEquals(jogador.getNivel(), 5);
         assertEquals(portal.getEnergiaAtual(), 4);
-        assertEquals(portal.getNomeJogador(), "Duarte");
+        assertEquals(portal.getJogadorNome(), "Duarte");
     }
 
     /**
@@ -77,7 +77,7 @@ public class PortalGestaoTeste {
         assertEquals(jogador.getExperiencia(), 1);
         assertEquals(jogador.getNivel(), 1);
         assertEquals(portal.getEnergiaAtual(), 4);
-        assertEquals(portal.getNomeJogador(), null);
+        assertEquals(portal.getJogadorNome(), null);
     }
 
     /**
@@ -99,7 +99,7 @@ public class PortalGestaoTeste {
         assertEquals(jogador.getExperiencia(), 1);
         assertEquals(jogador.getNivel(), 1);
         assertEquals(portal.getEnergiaAtual(), 6);
-        assertEquals(portal.getNomeJogador(), null);
+        assertEquals(portal.getJogadorNome(), null);
     }
 
     /**

@@ -1,10 +1,8 @@
 package GUI;
 
-import ClassImplementation.LinkedList;
 import Exceptions.InvalidValue;
-import Player.Player;
-import Player.Map;
 import Player.Connector;
+import Player.Map;
 
 import javax.swing.*;
 import java.awt.*;

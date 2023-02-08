@@ -37,7 +37,7 @@ public class PortalGestao {
             jogador.mudarProximoNivel();
 
             portal.setEnergiaAtual(0);
-            portal.setNomeJogador(null);
+            portal.setJogadorNome(null);
 
             Registos registo = new Registos(jogador, Acao.NEUTRALIZOU, energiaRetirada - tempEnergiaSobra);
             portal.getRegistos().push(registo);
@@ -50,7 +50,7 @@ public class PortalGestao {
             jogador.mudarProximoNivel();
 
             portal.setEstado(jogador.getEquipa());
-            portal.setNomeJogador(jogador.getName());
+            portal.setJogadorNome(jogador.getName());
 
         }else{
             portal.setEnergiaAtual(portal.getEnergiaAtual()-energiaRetirada);

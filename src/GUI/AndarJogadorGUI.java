@@ -87,8 +87,8 @@ public class AndarJogadorGUI implements ActionListener {
             if (idValidade == -1) {
                 System.out.println("Este local não existe!");
             } else {
-                locais = tempMapa.getNetwork().iteratorShortestPath(tempJogador.getIdLocalAtual(), idValidade);
-                tamanhoCaminho = tempMapa.getNetwork().shortestPathWeight(tempJogador.getIdLocalAtual(), idValidade);
+                locais = tempMapa.getNetwork().iteratorShortestPath(tempJogador.getLocalAtual(), idValidade);
+                tamanhoCaminho = tempMapa.getNetwork().shortestPathWeight(tempJogador.getLocalAtual(), idValidade);
 
                 System.out.println("Custo do caminho: " + tamanhoCaminho);
 

@@ -27,6 +27,7 @@ public class Player {
         this.experiencia = 0.0;
         this.expParaProximoNivel = 100;
         this.energiaCapacidade = nivel + 49;
+        this.localAtual = 0;
     }
     /**
      * Construtor da classe Player
@@ -44,14 +45,6 @@ public class Player {
         this.equipa = equipa;
         this.expParaProximoNivel = 100;
         this.energiaCapacidade = nivel + 49;
-    }
-
-    public int getIdLocalAtual() {
-        return localAtual;
-    }
-
-    public void setIdLocalAtual(int idLocalAtual) {
-        this.localAtual = idLocalAtual;
     }
 
     public Double getEnergia() {
@@ -96,6 +89,15 @@ public class Player {
     public void setEquipa(Equipas equipa) {
         this.equipa = equipa;
     }
+
+    public int getLocalAtual() {
+        return localAtual;
+    }
+
+    public void setLocalAtual(int localAtual) {
+        this.localAtual = localAtual;
+    }
+
     /**
      * Metodo para mudar o jogador para o proximo nivel
      * Este metodo verifica se o jogador tem a experiencia necessaria para subir de nivel

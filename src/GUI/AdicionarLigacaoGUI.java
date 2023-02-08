@@ -6,7 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * @author 8210311 Daniela Moreira
+ * @author 8210367 Orlando Pires
+ */
 public class AdicionarLigacaoGUI implements ActionListener {
     private final JFrame frame = new JFrame("Adicionar Ligação");
     private final JLabel idLocal = new JLabel("Digite o Id do Local:");

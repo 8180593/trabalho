@@ -11,6 +11,7 @@ public class Portal extends Local{
     private double energiaMaxima;//energia maxima
     private final LinkedStack<Registos> registos;
     private String nomePortal;
+    private String jogadorNome;
 
     /**
      * Construtor da classe Portal
@@ -26,6 +27,7 @@ public class Portal extends Local{
         this.energiaMaxima = energiaMaxima;
         this.nomePortal = null;
         this.registos = new LinkedStack<Registos>();
+        this.jogadorNome = null;
     }
     /**
      * Construtor da classe Portal
@@ -65,12 +67,19 @@ public class Portal extends Local{
         this.estado = estado;
     }
 
-    public String getNomeJogador() {
-        return this.nomePortal;
+    public String getJogadorNome() {
+        return this.jogadorNome;
     }
 
-    public void setNomeJogador(String nomePortal) {
+    public void setJogadorNome(String jogadorNome) {
+        this.jogadorNome = jogadorNome;
+    }
+
+    public String getNomePortal() {
+        return nomePortal;
+    }
+
+    public void setNomePortal(String nomePortal) {
         this.nomePortal = nomePortal;
     }
-
 }

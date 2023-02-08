@@ -44,7 +44,26 @@ public class JsonTest {
 
     @Test
     void testarimportalJson() throws IOException, ParseException {
+        LinkedList<Portal> portais = new LinkedList<>();
+        LinkedList<Connector> conectores = new LinkedList<>();
+        LinkedList<Player> jogadores = new LinkedList<>();
         Json json = new Json();
-        json.importarJson("Map.json");
+        json.importarJson("Map.json", portais, conectores, jogadores);
+    }
+
+    @Test
+    void testarExportarJson() throws IOException, ParseException {
+        LinkedList<Portal> portais = new LinkedList<>();
+        LinkedList<Connector> conectores = new LinkedList<>();
+        LinkedList<Player> jogadores = new LinkedList<>();
+        Player jogador = new Player("Jogador", Equipas.Sparks);
+        Connector connector = new Connector(1l, 1, 1, 1, 10);
+        Connector connector1 = new Connector(2l, 44,23,12,12);
+        jogadores.add(jogador);
+        conectores.add(connector);
+        conectores.add(connector1);
+        Json json = new Json();
+        json.importarJson("Map.json", portais, conectores, jogadores);
+        json.exportarJson("Map.json", portais, conectores, jogadores);
     }
 }

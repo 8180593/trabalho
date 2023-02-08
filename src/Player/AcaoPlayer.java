@@ -29,7 +29,7 @@ public class AcaoPlayer {
         LinkedList<Integer> resultados = new LinkedList<Integer>();
 
         for(int i = 0; i < map.getLocais().size(); i++) {
-            if (map.hasEdge(jogador.getIdLocalAtual(), i)) {
+            if (map.hasEdge(jogador.getLocalAtual(), i)) {
                 resultados.add(i);
             }
         }
@@ -51,7 +51,7 @@ public class AcaoPlayer {
     public boolean andar(Player jogador, int escolha, LinkedList<Integer> resultados){
         for (int i = 0; i < resultados.size(); i++){
             if(resultados.get(i) == escolha){
-                jogador.setIdLocalAtual(escolha);
+                jogador.setLocalAtual(escolha);
                 return true;
             }
         }

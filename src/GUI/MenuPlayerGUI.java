@@ -23,6 +23,7 @@ public class MenuPlayerGUI implements ActionListener {
     private Map tempMapa;
     private Player tempPlayer;
     private AcaoPlayer acaoPlayer;
+
     public MenuPlayerGUI(Map mapa, Player jogador) {
         this.tempMapa = mapa;
         this.tempPlayer = jogador;
