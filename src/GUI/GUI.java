@@ -16,19 +16,9 @@ import java.io.IOException;
  * @author Orlando Pires 8210367
  */
 public class GUI implements ActionListener {
-    //escolher entre administrador ou jogador
-    //listar jogadores por equipa? (mostrar o numero)
-    //listar locais (mostrar o numero)
-    //ler json
-    //guardar json
-
     private final JFrame frame = new JFrame("Menu Inicial");
     private final JButton buttonMenuAdmin = new JButton("Menu Administrador");
-    //O menu admin tem de ter o EditMapGUI
     private final JButton buttonMenuJogador = new JButton("Menu Jogador");
-    //O menu jogador deve ter uma opçao para criar jogador(add jogador)
-    //e uma para dar login
-        //depois de dar login aparece as funcionalidades do jogador
     private final JButton buttonMostrarLocais = new JButton("Mostrar Locais");
     private final JButton buttonMostrarJogadores = new JButton("Mostrar Jogadores");
     private final JButton buttonLerJson = new JButton("Importar Json");
@@ -68,10 +58,6 @@ public class GUI implements ActionListener {
         panel.add(buttonEscreverJson);
 
     }
-    public static void main(String[] args) throws InvalidValue {
-        Map mapa = new Map();
-        EditMapGUI editMapGUI = new EditMapGUI(mapa);
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -79,7 +65,7 @@ public class GUI implements ActionListener {
             EditMapGUI editMapGUI = new EditMapGUI(mapa);
         }
         if(e.getSource() == buttonMenuJogador){
-
+            JogadorGUI jogadorGUI = new JogadorGUI(mapa, jogadores);
         }
         if(e.getSource() == buttonMostrarLocais){
             for(int i = 0; i < mapa.getLocais().size(); i++){
@@ -113,6 +99,15 @@ public class GUI implements ActionListener {
         }
         if(e.getSource() == buttonEscreverJson){
             json.exportarJson("Map.json", portais, conectores, jogadores);
+        }
+    }
+    public static void main(String[] args) throws InvalidValue {
+        try {
+            GUI gui = new GUI();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
     }
 }
