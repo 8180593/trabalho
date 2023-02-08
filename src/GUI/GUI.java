@@ -57,6 +57,12 @@ public class GUI implements ActionListener {
         panel.add(buttonLerJson);
         panel.add(buttonEscreverJson);
 
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Menu Jogador");
+        frame.pack();
+        frame.setVisible(true);
+
     }
 
     @Override
@@ -68,14 +74,23 @@ public class GUI implements ActionListener {
             JogadorGUI jogadorGUI = new JogadorGUI(mapa, jogadores);
         }
         if(e.getSource() == buttonMostrarLocais){
-            for(int i = 0; i < mapa.getLocais().size(); i++){
-                System.out.println(mapa.getLocais().get(i).getId());
-                System.out.println(mapa.getLocais().get(i).getLatitude());
-                System.out.println(mapa.getLocais().get(i).getLongitude());
-                System.out.println(mapa.getLocais().get(i).getEnergiaAtual());
+            for(int i = 0; i < mapa.getPortais().size(); i++){
+                System.out.println(mapa.getPortais().get(i).getId());
+                System.out.println(mapa.getPortais().get(i).getLatitude());
+                System.out.println(mapa.getPortais().get(i).getLongitude());
+                System.out.println(mapa.getPortais().get(i).getEnergiaAtual());
                 System.out.println("\\--------------||--------------//");
             }
-            System.out.println("Existem no total " + mapa.getLocais().size() + "locais.");
+            System.out.println("Existem no total " + mapa.getPortais().size() + " portais.");
+
+            for(int i = 0; i < mapa.getConnectors().size(); i++){
+                System.out.println(mapa.getConnectors().get(i).getId());
+                System.out.println(mapa.getConnectors().get(i).getLatitude());
+                System.out.println(mapa.getConnectors().get(i).getLongitude());
+                System.out.println(mapa.getConnectors().get(i).getEnergiaAtual());
+                System.out.println("\\--------------||--------------//");
+            }
+            System.out.println("Existem no total " + mapa.getPortais().size() + " connectores.");
         }
         if(e.getSource() == buttonMostrarJogadores){
             for(int i = 0; i < jogadores.size(); i++){
@@ -86,7 +101,7 @@ public class GUI implements ActionListener {
                 System.out.println(jogadores.get(i).getExperiencia());
                 System.out.println("\\--------------||--------------//");
             }
-            System.out.println("Existem no total " + jogadores.size() + "jogadores.");
+            System.out.println("Existem no total " + jogadores.size() + " jogadores.");
         }
         if(e.getSource() == buttonLerJson){
             try {

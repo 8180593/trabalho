@@ -19,12 +19,16 @@ public class Map extends Network<String> implements MapInterface{
     private static int contadorVertices;
     private Network<Local> network;
     private LinkedList<Local> locais;
+    private LinkedList<Portal> portais;
+    private LinkedList<Connector> connectors;
     /**
      * Construtor da classe Map
      */
     public Map(){
         this.network = new Network<Local>();
         this.locais = new LinkedList<Local>();
+        this.portais = new LinkedList<Portal>();
+        this.connectors = new LinkedList<Connector>();
     }
 
     public LinkedList<Local> getLocais() {
@@ -35,6 +39,14 @@ public class Map extends Network<String> implements MapInterface{
         return network;
     }
 
+    public LinkedList<Portal> getPortais() {
+        return portais;
+    }
+
+    public LinkedList<Connector> getConnectors() {
+        return connectors;
+    }
+
     /**
      * Adicionar um portal ao mapa
      * @param portal novo portal a ser adicionado
@@ -43,6 +55,7 @@ public class Map extends Network<String> implements MapInterface{
     public void addLocal(Portal portal) {
         network.addVertex(portal);
         locais.add(portal);
+        portais.add(portal);
     }
     /**
      * Adicionar um connector ao mapa
@@ -52,6 +65,7 @@ public class Map extends Network<String> implements MapInterface{
     public void addLocal(Connector connector) {
         network.addVertex(connector);
         locais.add(connector);
+        connectors.add(connector);
     }
 
     /**
